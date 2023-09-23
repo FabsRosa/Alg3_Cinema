@@ -1,5 +1,4 @@
 package ufmt_alg3.cinema;
-import java.util.ArrayList;
 
 /**
  * @author Virgínia Aguiar
@@ -7,11 +6,9 @@ import java.util.ArrayList;
  *         Fabrício Rosa
  */
 
-public class Lista {
+public class Arquivo {
     
-    ArrayList<String> lista = new ArrayList();
-
-    public void cadastrar() {
+    public void salvar() {
         
     }
 
@@ -19,7 +16,7 @@ public class Lista {
         
     }
 
-    public void excluir() {
+    public void limpar() {
         
     }
 }
