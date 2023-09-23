@@ -16,7 +16,7 @@ public class Lista {
     }
 
     public void listar() {
-        
+        System.out.println("Teste.");
     }
 
     public void excluir() {
