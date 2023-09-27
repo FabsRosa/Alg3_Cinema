@@ -1,4 +1,5 @@
 package ufmt_alg3.cinema;
+import java.text.ParseException;
 import java.util.Scanner;
 
 /**
@@ -8,7 +9,7 @@ import java.util.Scanner;
  */
 public class Menu {
     
-    public void apresentarMenu() {
+    public void apresentarMenu() throws ParseException {
         Scanner scanner = new Scanner(System.in);
         Lista lista = new Lista();
         Arquivo arquivo = new Arquivo();
