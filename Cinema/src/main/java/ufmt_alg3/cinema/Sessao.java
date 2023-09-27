@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
  */
 public class Sessao implements Serializable{
     private Integer id;
-    private static Integer proximoId;
+    private static Integer proximoId = 0;
     // private Sala tipoDeSessao;
     private String nomeSessao;
     private Date dataHora;
