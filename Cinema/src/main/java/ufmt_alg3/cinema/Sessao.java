@@ -1,5 +1,6 @@
 package ufmt_alg3.cinema;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -8,18 +9,20 @@ import java.text.SimpleDateFormat;
  *
  * @author Gabriel
  */
-public class Sessao {
-    protected Integer id;
-    protected Sala tipoDeSessao;
-    protected String nomeSessao;
-    protected Date dataHora;
+public class Sessao implements Serializable{
+    private Integer id;
+    private static Integer proximoId;
+    // private Sala tipoDeSessao;
+    private String nomeSessao;
+    private Date dataHora;
     
-    public Sessao (Integer id, Sala tipoDeSessao, String nomeSessao,
+    public Sessao (/*Sala tipoDeSessao,*/ String nomeSessao,
             String dataHora) throws ParseException {
         SimpleDateFormat dateFormat =
                 new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        this.id = id;
-        this.tipoDeSessao = tipoDeSessao;
+        this.id = proximoId;
+        Sessao.proximoId++;
+        //this.tipoDeSessao = tipoDeSessao;
         this.nomeSessao = nomeSessao;
         this.dataHora = dateFormat.parse(dataHora);
     }
@@ -31,15 +34,17 @@ public class Sessao {
     public void setId(Integer id) {
         this.id = id;
     }
-
-    public String getTipoDeSessao() {
+/*
+    Getters e setters do tipo de sala.
+    
+    public Sala getTipoDeSessao() {
         return tipoDeSessao;
     }
 
-    public void setTipoDeSessao(String tipoDeSessao) {
+    public void setTipoDeSessao(Sala tipoDeSessao) {
         this.tipoDeSessao = tipoDeSessao;
     }
-
+*/
     public String getNomeSessao() {
         return nomeSessao;
     }
