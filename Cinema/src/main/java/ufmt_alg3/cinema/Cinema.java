@@ -12,5 +12,6 @@ public class Cinema {
     public static void main(String[] args) throws ParseException {
         Menu menu = new Menu();
         menu.apresentarMenu();
+        // Teste de vinculação de usuário ao commit.
     }
 }
