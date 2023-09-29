@@ -11,12 +11,14 @@ import java.util.Scanner;
 public class Menu {
     
     public void apresentarMenu() throws ParseException, IOException {
-        Scanner scanner = new Scanner(System.in);
+        
         Lista lista = new Lista();
         Arquivo arquivo = new Arquivo();
+        boolean continuar = true;
         
-        while (true) {
+        while (continuar) {
             Integer opt;
+            Scanner scanner = new Scanner(System.in);
             System.out.println("Menu");
             System.out.println("");
             System.out.println("1. Cadastrar.");
@@ -28,6 +30,7 @@ public class Menu {
             System.out.println("7. Sair.");
             
             opt = scanner.nextInt();
+            
             this.limparConsole();
             switch (opt) {
                 case 1 -> {
@@ -49,10 +52,10 @@ public class Menu {
                     arquivo.limpar();
                 }
                 case 7 -> {
-                    return;
+                    continuar = false;
                 }
+                default -> System.out.println("Opção Inválida.");
             }
-            scanner.reset();
         }
     }
     
