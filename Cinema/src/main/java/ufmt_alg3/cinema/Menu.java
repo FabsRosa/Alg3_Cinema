@@ -1,7 +1,6 @@
 package ufmt_alg3.cinema;
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
