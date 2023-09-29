@@ -1,5 +1,7 @@
 package ufmt_alg3.cinema;
+import java.io.IOException;
 import java.text.ParseException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -9,14 +11,13 @@ import java.util.Scanner;
  */
 public class Menu {
     
-    public void apresentarMenu() throws ParseException {
+    public void apresentarMenu() throws ParseException, IOException {
         Scanner scanner = new Scanner(System.in);
         Lista lista = new Lista();
         Arquivo arquivo = new Arquivo();
         
         while (true) {
-            int opt;
-        
+            Integer opt;
             System.out.println("Menu");
             System.out.println("");
             System.out.println("1. Cadastrar.");
@@ -26,7 +27,7 @@ public class Menu {
             System.out.println("5. Excluir item do array.");
             System.out.println("6. Limpar arquivo físico.");
             System.out.println("7. Sair.");
-        
+            
             opt = scanner.nextInt();
             this.limparConsole();
             switch (opt) {
@@ -40,7 +41,7 @@ public class Menu {
                     arquivo.listar();
                 }
                 case 4 -> {
-                    arquivo.salvar();
+                    arquivo.salvar(lista.getLista());
                 }
                 case 5 -> {
                     lista.excluir();
@@ -52,6 +53,7 @@ public class Menu {
                     return;
                 }
             }
+            scanner.reset();
         }
     }
     
