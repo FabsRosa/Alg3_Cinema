@@ -50,7 +50,8 @@ public class Lista {
                 lista.add(novaSessao);
                 setLista(lista);
                 System.out.println("Quer parar o cadastro? Sim = 1, não = 2");
-                opcao = scanner.nextInt();
+                opcao = Integer.valueOf(scanner.nextLine());
+                
                 /*Esse scanner abaixo serve para limpar o buffer anterior
                 "nextInt()". Ele é feito pois o método anterior não consome to-
                 talmente a linha após ler o número inteiro e sobra uma quebra
