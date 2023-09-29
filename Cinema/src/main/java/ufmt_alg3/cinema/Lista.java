@@ -22,18 +22,18 @@ public class Lista {
     }
     
     public void cadastrar() throws ParseException {
-        Integer opcao;
+        Integer opcao = 2;
+        try (Scanner scanner = new Scanner(System.in)) { 
         /*
         Aqui pretendo criar um método estático para buscar no arquivo o último
         id registrado para usá-lo no registro das novas sessões.
-         */
-        // proximoId = getProximoIDArquivo();
-        try (Scanner scanner = new Scanner(System.in)) {
-            do {
+         */ // proximoId = getProximoIDArquivo();
+                
+            while (opcao == 2) {
                 Sessao novaSessao;
                 System.out.println("Cadastramento de Sessão.\n");
                 /*
-                A implementação a seguir se refere ao cadastro da sala que aindae
+                A implementação a seguir se refere ao cadastro da sala que ainda
                 está sendo feita.
                 
                 System.out.println("Sessão " + proximoId + "° sendo cadastrada.");
@@ -48,6 +48,7 @@ public class Lista {
                 String dataHora = scanner.nextLine();
                 novaSessao = new Sessao(nome, dataHora);
                 lista.add(novaSessao);
+                setLista(lista);
                 System.out.println("Quer parar o cadastro? Sim = 1, não = 2");
                 opcao = scanner.nextInt();
                 /*Esse scanner abaixo serve para limpar o buffer anterior
@@ -55,8 +56,10 @@ public class Lista {
                 talmente a linha após ler o número inteiro e sobra uma quebra
                 de linha em "nextLine()" que lê o nome da sessão.
                 */
-                scanner.nextLine();
-            } while (opcao != 1);
+            }
+            scanner.close();
+        } catch (NumberFormatException e) {
+            System.out.println("Erro de formato: " + e.getMessage());
         }
     }
 
