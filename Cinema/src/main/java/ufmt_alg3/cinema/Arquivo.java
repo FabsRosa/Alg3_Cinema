@@ -29,14 +29,14 @@ public class Arquivo {
                 arquivo.createNewFile();
         }
         
-        FileOutputStream fileOut = new FileOutputStream(getNomeDoArquivo());
-        ObjectOutputStream out = new ObjectOutputStream(fileOut);
-
-        // Grava o ArrayList no arquivo
-        out.writeObject(lista);
-
-        out.close();
-        fileOut.close();
+        
+        try (FileOutputStream fileOut = new FileOutputStream(
+                getNomeDoArquivo());
+                ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
+            // Grava o ArrayList no arquivo
+            out.writeObject(lista);
+            
+        }
 
         System.out.println("Dados persistidos com sucesso no arquivo.");
     }
@@ -47,5 +47,35 @@ public class Arquivo {
 
     public void limpar() {
         
+    }
+    
+    public Integer buscarUltimoId() throws IOException, ClassNotFoundException {
+        // Variáveis locais auxiliares.
+        String nomeArquivo;
+        Integer ultimoId;
+        nomeArquivo = getNomeDoArquivo();
+        
+        /*
+         * O seguinte trecho de código será utilizado para desserializar os
+         * objetos guardados no arquivo, armazenando-os em uma lista.
+         */
+        FileInputStream arquivo = new FileInputStream(nomeArquivo);
+        try (ObjectInputStream sessao = new ObjectInputStream(arquivo)) {
+            ArrayList<Sessao> listaDoArq = (ArrayList<Sessao>)
+                    sessao.readObject();
+            
+            // Verifica se o arquivo não está vazio.
+            if (!listaDoArq.isEmpty()) {
+                // Obtém o último objeto da lista
+                Sessao ultimoObjeto = listaDoArq.get(listaDoArq.size() - 1);
+
+                // Acessa o atributo desejado do último registro
+                ultimoId = ultimoObjeto.getId();
+                return ultimoId;
+            } else {
+                System.out.println("O arquivo está vazio.");
+            }
+        }
+        return null;
     }
 }
