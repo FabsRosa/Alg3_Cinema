@@ -9,7 +9,7 @@ package ufmt_alg3.cinema;
  * @author Administrador
  */
 public class SalaAnime extends Sala{
-    private final String decoracaoTokyoGhoul;
+    private boolean decoracaoTokyoGhoul;
     private final String decoracaoNaruto;
     private final String decoracaoKimiNoNaWa;
     
@@ -18,11 +18,15 @@ public class SalaAnime extends Sala{
         //herdado da sala 
         super(cadeiras, luzes, som);
         //objetos da sala
-        this.decoracaoTokyoGhoul = "Tokyo Ghoul";
         this.decoracaoNaruto = "Naruto";
         this.decoracaoKimiNoNaWa = "Kimi no Na wa";
     }
-    public String getDecoracaoTokyoGhoul() {
+
+    public void setDecoracaoTokyoGhoul(boolean decoracaoTokyoGhoul) {
+        this.decoracaoTokyoGhoul = decoracaoTokyoGhoul;
+    }
+
+    public boolean isDecoracaoTokyoGhoul() {
         return decoracaoTokyoGhoul;
     }
 
