@@ -6,7 +6,7 @@ package ufmt_alg3.cinema;
 
 /**
  *
- * @author Administrador
+ * @author vi
  */
 public class SalaTerror extends Sala{
     public SalaTerror(String cadeiras, String luzes, String som) {

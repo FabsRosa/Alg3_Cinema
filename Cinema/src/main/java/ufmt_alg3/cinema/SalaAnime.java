@@ -4,22 +4,15 @@
  */
 package ufmt_alg3.cinema;
 
-/**
- *
- * @author Administrador
- */
-public class SalaAnime extends Sala{
+public class SalaAnime extends Sala {
     private boolean decoracaoTokyoGhoul;
-    private final String decoracaoNaruto;
-    private final String decoracaoKimiNoNaWa;
-    
+    private boolean decoracaoEvangelion;
+
     
     public SalaAnime(String cadeiras, String luzes, String som) {
-        //herdado da sala 
+        
         super(cadeiras, luzes, som);
-        //objetos da sala
-        this.decoracaoNaruto = "Naruto";
-        this.decoracaoKimiNoNaWa = "Kimi no Na wa";
+        
     }
 
     public void setDecoracaoTokyoGhoul(boolean decoracaoTokyoGhoul) {
@@ -30,11 +23,11 @@ public class SalaAnime extends Sala{
         return decoracaoTokyoGhoul;
     }
 
-    public String getDecoracaoNaruto() {
-        return decoracaoNaruto;
+    public void setDecoracaoEvangelion(boolean decoracaoEvangelion) {
+        this.decoracaoEvangelion = decoracaoEvangelion;
     }
 
-    public String getDecoracaoKimiNoNaWa() {
-        return decoracaoKimiNoNaWa;
+    public boolean isDecoracaoEvangelion() {
+        return decoracaoEvangelion;
     }
 }

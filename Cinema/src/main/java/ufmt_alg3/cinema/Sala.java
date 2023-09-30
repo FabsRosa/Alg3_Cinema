@@ -6,13 +6,13 @@ package ufmt_alg3.cinema;
 
 /**
  *
- * @author Administrador
+ * @author vi
  */
 public class Sala {
     // Atributos da Sala
-    private String cadeiras;
+    String cadeiras;
     private String luzes;
-    private String som;
+    String som;
 
     // Construtor da Sala
     public Sala(String cadeiras, String luzes, String som) {
