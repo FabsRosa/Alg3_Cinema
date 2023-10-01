@@ -1,5 +1,6 @@
 package ufmt_alg3.cinema;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
 
@@ -10,7 +11,8 @@ import java.text.ParseException;
  */
 public class Cinema {
 
-    public static void main(String[] args) throws ParseException, IOException {
+    public static void main(String[] args) throws ParseException, IOException,
+            FileNotFoundException, ClassNotFoundException {
         Menu menu = new Menu();
         menu.apresentarMenu();
         // Teste de vinculação de usuário ao commit.
