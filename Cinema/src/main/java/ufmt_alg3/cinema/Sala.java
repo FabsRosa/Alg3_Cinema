@@ -43,5 +43,7 @@ public class Sala {
     public void setSom(String som) {
         this.som = som;
     }
-
+    public abstract void exibirDetalhesSala();
+    
+    public abstract double calcularPrecoDoIngresso(int numeroDeIngressos);
 }
