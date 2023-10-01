@@ -4,17 +4,13 @@
  */
 package ufmt_alg3.cinema;
 
-/**
- *
- * @author Administrador
- */
 public class SalaNeurodivergente extends Sala {
     private boolean fonesDeOuvir;
     private String iluminacaoSuave;
     private String areaDeSensoryFriendly;
 
-    public SalaNeurodivergente(String luzes, String som, boolean fonesDeOuvir, String iluminacaoSuave, String areaDeSensoryFriendly) {
-        super(luzes, som);
+    public SalaNeurodivergente(String cadeiras, String luzes, String som, boolean fonesDeOuvir, String iluminacaoSuave, String areaDeSensoryFriendly) {
+        super(cadeiras, luzes, som);
         this.fonesDeOuvir = fonesDeOuvir;
         this.iluminacaoSuave = iluminacaoSuave;
         this.areaDeSensoryFriendly = areaDeSensoryFriendly;
@@ -44,6 +40,14 @@ public class SalaNeurodivergente extends Sala {
         this.areaDeSensoryFriendly = areaDeSensoryFriendly;
     }
     
-   
+    @Override
+    public double calcularPrecoDoIngresso(int numeroDeIngressos){
+        return 1.0;
+    }
+    
+    @Override
+    public void exibirDetalhesSala(){
+        
+    }
 }
 

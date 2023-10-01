@@ -4,15 +4,11 @@
  */
 package ufmt_alg3.cinema;
 
-/**
- *
- * @author Administrador
- */
 public class SalaMedieval extends Sala{
     private boolean luzDeTochas;
     private boolean chaoDeMadeira;
     
-    public SalaMedieval(String cadeiras, String luzes, String som) {
+    public SalaMedieval(String cadeiras, String luzes, String som, boolean luzDeTochas, boolean chaoDeMadeira) {
         super(cadeiras, luzes, som);
         this.luzDeTochas = luzDeTochas;
         this.chaoDeMadeira = chaoDeMadeira;
@@ -31,6 +27,16 @@ public class SalaMedieval extends Sala{
 
     public void setChaoDeMadeira(boolean chaoDeMadeira) {
         this.chaoDeMadeira = chaoDeMadeira;
-    }   
+    }
+    
+    @Override
+    public double calcularPrecoDoIngresso(int numeroDeIngressos){
+        return 1.0;
+    }
+    
+    @Override
+    public void exibirDetalhesSala(){
+        
+    }
     
 }

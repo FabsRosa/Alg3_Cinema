@@ -8,9 +8,7 @@ public class SalaAnime extends Sala {
     private boolean decoracaoTokyoGhoul;
     private boolean decoracaoEvangelion;
 
-    
     public SalaAnime(String cadeiras, String luzes, String som) {
-        
         super(cadeiras, luzes, som);
         
     }

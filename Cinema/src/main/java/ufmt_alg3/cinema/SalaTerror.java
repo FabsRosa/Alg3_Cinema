@@ -44,5 +44,15 @@ public class SalaTerror extends Sala {
         this.lencoisManchadosDeSangue = lencoisManchadosDeSangue;
     }
     
+    @Override
+    public double calcularPrecoDoIngresso(int numeroDeIngressos){
+        return 1.0;
+    }
+    
+    @Override
+    public void exibirDetalhesSala(){
+        
+    }
+    
 }
 

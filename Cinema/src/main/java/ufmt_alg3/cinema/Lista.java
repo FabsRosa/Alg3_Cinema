@@ -69,7 +69,14 @@ public class Lista {
     }
 
     public void listar() {
-        System.out.println("Teste.");
+        System.out.println("Conteúdo do array: ");
+        System.out.println("");
+        
+        for (int i = 0; i < this.lista.size(); i++) {
+            System.out.println(this.lista.get( i).getId());
+            System.out.println(this.lista.get(i).getNomeSessao());
+            System.out.println(this.lista.get(i).getDataHora());
+        }
     }
 
     public void excluir() {

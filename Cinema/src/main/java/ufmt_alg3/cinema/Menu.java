@@ -63,6 +63,6 @@ public class Menu {
     }
     
     public void limparConsole() {
-        System.out.print("\n\n\n\n\n\n\n\n\n");
+        System.out.print("\n\n");
     }
 }

@@ -8,7 +8,7 @@ package ufmt_alg3.cinema;
  *
  * @author vi
  */
-public class Sala {
+public abstract class Sala {
     // Atributos da Sala
     String cadeiras;
     private String luzes;
