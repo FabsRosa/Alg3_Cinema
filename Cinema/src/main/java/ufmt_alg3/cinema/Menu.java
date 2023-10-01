@@ -43,7 +43,8 @@ public class Menu {
                     arquivo.listar();
                 }
                 case 4 -> {
-                    arquivo.salvar(lista.getLista());
+                    arquivo.salvar(lista.getLista(),
+                            arquivo.getNomeDoArquivo());
                 }
                 case 5 -> {
                     lista.excluir();
