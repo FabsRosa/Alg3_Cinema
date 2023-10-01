@@ -1,4 +1,5 @@
 package ufmt_alg3.cinema;
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -21,26 +22,39 @@ public class Lista {
         this.lista = lista;
     }
     
-    public void cadastrar() throws ParseException {
+    /**
+     * Esse método mostra no console uma interface de texto para o cadastramen-
+     * to de uma sessão na em uma sala do cinema. Ele armazena os registros
+     * em um {@code ArrayList}.
+     * 
+     * @param nomeArquivo
+     * @throws java.text.ParseException
+     * @throws java.io.IOException
+     * @throws java.lang.ClassNotFoundException
+     */
+    public void cadastrar(String nomeArquivo) throws ParseException, 
+            IOException, ClassNotFoundException {
         Integer opcao = 2;
-        /*
-        Aqui pretendo criar um método estático para buscar no arquivo o último
-        id registrado para usá-lo no registro das novas sessões.
-         */ // proximoId = getProximoIDArquivo();
+        Integer idAtual;
+        
+        idAtual = Arquivo.buscarUltimoId(nomeArquivo);
+        Sessao.setProximoId(idAtual);
                 
             while (opcao == 2) {
                 Scanner scanner = new Scanner(System.in);
                 Sessao novaSessao;
                 System.out.println("Cadastramento de Sessão.\n");
+                System.out.println("Sessão " + Sessao.getProximoId() + "° sendo"
+                + " cadastrada.");
                 /*
                 A implementação a seguir se refere ao cadastro da sala que ainda
                 está sendo feita.
-                
-                System.out.println("Sessão " + proximoId + "° sendo cadastrada.");
+
                 System.out.println("Sala para a sessão: ");
                 String tipoSala = scanner.nextLine();
                 Sala sala = new Sala(parametros);
                 */
+                
                 System.out.println("Nome da sessão: ");
                 String nome = scanner.nextLine();
                 System.out.println("Data da sessão "
@@ -51,12 +65,6 @@ public class Lista {
                 setLista(lista);
                 System.out.println("Quer parar o cadastro? Sim = 1, não = 2");
                 opcao = scanner.nextInt();
-                
-                /*Esse scanner abaixo serve para limpar o buffer anterior
-                "nextInt()". Ele é feito pois o método anterior não consome to-
-                talmente a linha após ler o número inteiro e sobra uma quebra
-                de linha em "nextLine()" que lê o nome da sessão.
-                */
             }
     }
 
