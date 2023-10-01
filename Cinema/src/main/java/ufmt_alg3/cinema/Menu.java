@@ -1,4 +1,5 @@
 package ufmt_alg3.cinema;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Scanner;
@@ -10,7 +11,8 @@ import java.util.Scanner;
  */
 public class Menu {
     
-    public void apresentarMenu() throws ParseException, IOException {
+    public void apresentarMenu() throws ParseException, IOException,
+            FileNotFoundException, ClassNotFoundException {
         
         Lista lista = new Lista();
         Arquivo arquivo = new Arquivo();
@@ -34,13 +36,13 @@ public class Menu {
             this.limparConsole();
             switch (opt) {
                 case 1 -> {
-                    lista.cadastrar();
+                    lista.cadastrar(arquivo.getNomeDoArquivo());
                 }
                 case 2 -> {
                     lista.listar();
                 }
                 case 3 -> {
-                    arquivo.listar();
+                    arquivo.listar(arquivo.getNomeDoArquivo());
                 }
                 case 4 -> {
                     arquivo.salvar(lista.getLista(),
