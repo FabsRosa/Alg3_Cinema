@@ -43,9 +43,8 @@ public class Lista {
             while (opcao == 2) {
                 Scanner scanner = new Scanner(System.in);
                 Sessao novaSessao;
-                System.out.println("Cadastramento de Sessão.\n");
-                System.out.println("Sessão " + Sessao.getProximoId() + "° sendo"
-                + " cadastrada.");
+                System.out.println("Cadastro de Sessão.\n");
+                System.out.println(Sessao.getProximoId() + "° Sessão.");
                 /*
                 A implementação a seguir se refere ao cadastro da sala que ainda
                 está sendo feita.
@@ -63,19 +62,36 @@ public class Lista {
                 novaSessao = new Sessao(nome, dataHora);
                 lista.add(novaSessao);
                 setLista(lista);
-                System.out.println("Quer parar o cadastro? Sim = 1, não = 2");
+                System.out.println("Quer parar o cadastro? Sim = 1, Não = 2");
                 opcao = scanner.nextInt();
             }
     }
 
     public void listar() {
-        System.out.println("Conteúdo do array: ");
-        System.out.println("");
+        int sizeNomeSessao = 14; // Determina o tamanho da coluna "Nome da Sessão"
         
-        for (int i = 0; i < this.lista.size(); i++) {
-            System.out.println(this.lista.get( i).getId());
-            System.out.println(this.lista.get(i).getNomeSessao());
-            System.out.println(this.lista.get(i).getDataHora());
+        if (this.lista.isEmpty()) {
+            System.out.println("Array vazio.");
+        } else {
+            // Definindo tamanho da coluna "Nome da Sessão"
+            for (int i = 0; i < this.lista.size(); i++) {
+                if (sizeNomeSessao < this.lista.get(i).getNomeSessao().length())
+                sizeNomeSessao = this.lista.get(i).getNomeSessao().length();
+            }
+
+            // Tabela apresentando os dados do array
+            System.out.println("Conteúdo do array: ");
+            System.out.println("");
+            System.out.printf("%s"," ID |");
+            System.out.printf(" %"+ sizeNomeSessao +"s |", "Nome da Sessão");
+            System.out.println(" Data e Hora");
+            
+            //Registros da tabela
+            for (int i = 0; i < this.lista.size(); i++) {
+                System.out.printf("%3d | ", this.lista.get( i).getId());
+                System.out.printf("%" + sizeNomeSessao + "s", this.lista.get(i).getNomeSessao());
+                System.out.println(" | " + this.lista.get(i).getDataHora());
+            }
         }
     }
 

@@ -19,6 +19,8 @@ public class Menu {
         boolean continuar = true;
         
         while (continuar) {
+            this.skipLine();
+            
             Integer opt;
             Scanner scanner = new Scanner(System.in);
             System.out.println("Menu");
@@ -33,7 +35,7 @@ public class Menu {
             
             opt = scanner.nextInt();
             
-            this.limparConsole();
+            this.skipLine();
             switch (opt) {
                 case 1 -> {
                     lista.cadastrar(arquivo.getNomeDoArquivo());
@@ -62,7 +64,8 @@ public class Menu {
         }
     }
     
-    public void limparConsole() {
-        System.out.print("\n\n");
+    public void skipLine() {
+
+        System.out.print("\n-------------------------\n");
     }
 }
