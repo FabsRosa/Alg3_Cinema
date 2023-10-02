@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Scanner;
+import ufmt_alg3.autentificacao.CAutenticacao;
 
 /*
  * @author Virgínia Aguiar
@@ -14,7 +16,14 @@ import java.util.ArrayList;
  * @author Fabrício Rosa
  */
 
-public class Arquivo {
+/**
+ * Essa classe é responsável por todas as manipulações feitas no arquivo. São 
+ * elas: salvar registros de sessões serializados em um arquivo .dat; buscar um
+ * arquivo, desserializá-lo e listar os elementos de dentro dele; buscar o 
+ * arquivo com os salvamentos e limpá-lo.
+ */
+
+public class Arquivo implements CAutenticacao {
     
     private final String nomeDoArquivo = "arquivo_registros.dat";
     
@@ -70,5 +79,46 @@ public class Arquivo {
 
     public void limpar() {
         
+    }
+    
+    /**
+     * Esse método solicita ao usuário uma senha para poder acessar as funções 
+     * do arquivo, a fim de protegê-lo de potenciais ataques indesejados.
+     * @return true se a senha estiver certa. False caso: o usuário 
+     */
+    @Override
+    public boolean autenticar(){
+        String senha = "123mudar";
+        String verificadorSenha = "senha claramente errada";
+        Integer tentativasFalhas = -1;
+        while (!verificadorSenha.contains(senha)) {
+            tentativasFalhas++;
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("""
+                               
+                                INTERFACE DE VERIFICAÇÃO DE ACESSO AO ARQUIVO.""");
+            System.out.print("Insira a senha para ter acesso ao arquivo:");
+            verificadorSenha = scanner.nextLine();
+            if (tentativasFalhas == 0) {
+                    System.out.println("""
+                                   
+                                            Senha incorreta.
+                                            Tente novamente.""");
+            } else if (tentativasFalhas >= 0) {
+                System.out.println("Você errou a senha " + tentativasFalhas
+                        + " vezes seguidas.");
+                System.out.println("Deseja continuar? 1 Sim; 2 Não.");
+                Integer sair = scanner.nextInt();
+                if (sair == 1) {
+                    System.out.println("""
+                                       
+                                        Você não tem acesso ao arquivo :-/ 
+                                        Retornando ao menu principal.""");
+                    return false;
+                }
+            }
+        }
+        System.out.println("A senha está correta, saudações! :)");
+        return true;
     }
 }

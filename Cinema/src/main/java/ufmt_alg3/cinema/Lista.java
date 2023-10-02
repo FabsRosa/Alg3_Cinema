@@ -43,6 +43,17 @@ public class Lista {
                 System.out.println("Cadastro de Sessão.\n");
                 System.out.println(Sessao.getProximoId() + "° Sessão.");
                 
+                //parte do cadastro sendo feita dentro de um método na Sala
+                /*
+                A implementação a seguir se refere ao cadastro da sala que ainda
+                está sendo feita.
+
+                System.out.println("Sala para a sessão: ");
+                String tipoSala = scanner.nextLine();
+                Sala sala = new Sala(parametros);
+                */
+
+                
                 System.out.println("Nome da sessão: ");
                 String nome = scanner.nextLine();
                 System.out.println("Data da sessão (formato 'dd/MM/yyyy HH:mm:ss'): ");
@@ -50,11 +61,6 @@ public class Lista {
                 novaSessao = new Sessao(salaEscolhida, nome, dataHora);
                 lista.add(novaSessao);
                 setLista(lista);
-                //parte da sala p escolher
-                
-                System.out.println("Garantimos uma esperiencia imersiva, personalizada para seu gosto"
-                        + "escolha a sala de sua prefêrencia :) ");
-               
                 System.out.println("Quer parar o cadastro? Sim = 1, Não = 2");
                 opcao = scanner.nextInt();
             }

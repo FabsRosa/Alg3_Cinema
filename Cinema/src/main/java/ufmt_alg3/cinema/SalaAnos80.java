@@ -10,7 +10,7 @@ public class SalaAnos80 extends Sala {
     private boolean lamparina;
 
 
-    private ArrayList<String> posters = new ArrayList();
+    private final ArrayList<String> posters = new ArrayList();
 
     
     
