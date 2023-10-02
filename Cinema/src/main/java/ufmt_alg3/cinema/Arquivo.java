@@ -99,12 +99,12 @@ public class Arquivo implements CAutenticacao {
                                 INTERFACE DE VERIFICAÇÃO DE ACESSO AO ARQUIVO.""");
             System.out.print("Insira a senha para ter acesso ao arquivo:");
             verificadorSenha = scanner.nextLine();
-            if (tentativasFalhas == 0) {
+            if (tentativasFalhas == 1) {
                     System.out.println("""
                                    
                                             Senha incorreta.
                                             Tente novamente.""");
-            } else if (tentativasFalhas >= 0) {
+            } else if (tentativasFalhas > 1) {
                 System.out.println("Você errou a senha " + tentativasFalhas
                         + " vezes seguidas.");
                 System.out.println("Deseja continuar? 1 Sim; 2 Não.");
