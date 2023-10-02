@@ -4,21 +4,33 @@
  */
 package ufmt_alg3.cinema;
 
+import java.util.ArrayList;
+
 public class SalaAnos80 extends Sala {
     private boolean lamparina;
-    private String[] posters;
-    private String carroDeVoltaParaOFuturo;
 
-    public SalaAnos80(String cadeiras, String luzes, String som, boolean lamparina, String[] posters, String carroDeVoltaParaOFuturo) {
-        super(cadeiras, luzes, som);
-        this.lamparina = lamparina;
-        this.posters = posters;
-        this.carroDeVoltaParaOFuturo = carroDeVoltaParaOFuturo;
+
+    private ArrayList<String> posters = new ArrayList();
+
+    public boolean isLamparina() {
+        return lamparina;
     }
 
+    public SalaAnos80(String cadeiras, String luzes, String som, boolean lamparina) {
+        super(cadeiras, luzes, som);
+        this.lamparina = lamparina;
+    }
+
+    public void addPosters(String poster) {
+        this.posters.add(poster);
+    }
+        public ArrayList<String> getPosters() {
+        return posters;
+    }
     
-    
-    
+    public void setLamparina(boolean lamparina) {
+        this.lamparina = lamparina;
+    }
     @Override
     public double calcularPrecoDoIngresso(int numeroDeIngressos) {
         return 80.0;

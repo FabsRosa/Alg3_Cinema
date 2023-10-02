@@ -13,14 +13,24 @@ public abstract class Sala {
     String cadeiras;
     private String luzes;
     String som;
+    
+//metodos construtores para modelar as salas do jeito q eu quero ;)
+    public Sala() {
+        
+    }
+    
+     public Sala(String luzes, String som) {
+        this.luzes = luzes;
+        this.som = som;
+    }
 
-    // Construtor da Sala
     public Sala(String cadeiras, String luzes, String som) {
         this.cadeiras = cadeiras;
         this.luzes = luzes;
         this.som = som;
     }
-        public String getCadeiras() {
+    
+    public String getCadeiras() {
         return cadeiras;
     }
 
