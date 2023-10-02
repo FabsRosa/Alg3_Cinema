@@ -31,12 +31,13 @@ public class SalaMedieval extends Sala{
     
     @Override
     public double calcularPrecoDoIngresso(int numeroDeIngressos){
-        return 1.0;
+        return 178.0;
     }
     
     @Override
     public void exibirDetalhesSala(){
-        
+        System.out.println("Essa sala ossui a premissa de ser um ambiente medieval, possui o chão de madeira, e tochas de fogo como luzes, afim de passar algumas sessoes que remetem a esse estilo, como senhor dos aneis");
+ 
     }
     
 }

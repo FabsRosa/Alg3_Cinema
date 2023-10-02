@@ -9,23 +9,23 @@ package ufmt_alg3.cinema;
  * @author vi
  */
 public class SalaTerror extends Sala {
-    private boolean estatuasDeDragao;
+    private boolean estatuasDeLobisomen;
     private boolean estatuasDeFantasmas;
     private boolean lencoisManchadosDeSangue;
 
-    public SalaTerror(String cadeiras, String luzes, String som, boolean estatuasDeDragao, boolean estatuasDeFantasmas, boolean lencoisManchadosDeSangue) {
+    public SalaTerror(String cadeiras, String luzes, String som, boolean estatuasDeLobisomen, boolean estatuasDeFantasmas, boolean lencoisManchadosDeSangue) {
         super(cadeiras, luzes, som);
-        this.estatuasDeDragao = estatuasDeDragao;
+        this.estatuasDeLobisomen = estatuasDeLobisomen;
         this.estatuasDeFantasmas = estatuasDeFantasmas;
         this.lencoisManchadosDeSangue = lencoisManchadosDeSangue;
     }
 
-    public boolean hasEstatuasDeDragao() {
-        return estatuasDeDragao;
+    public boolean hasEstatuasDeLobisomen() {
+        return estatuasDeLobisomen;
     }
 
-    public void setEstatuasDeDragao(boolean estatuasDeDragao) {
-        this.estatuasDeDragao = estatuasDeDragao;
+    public void setEstatuasDeLobisomen(boolean estatuasDeLobisomen) {
+        this.estatuasDeLobisomen = estatuasDeLobisomen;
     }
 
     public boolean hasEstatuasDeFantasmas() {
