@@ -4,11 +4,13 @@
  */
 package ufmt_alg3.cinema;
 
+import java.io.Serializable;
+
 /**
  *
  * @author vi
  */
-public abstract class Sala {
+public abstract class Sala implements Serializable {
     // Atributos da Sala
     String cadeiras;
     private String luzes;
