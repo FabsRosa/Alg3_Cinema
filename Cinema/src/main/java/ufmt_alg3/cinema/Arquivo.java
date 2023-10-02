@@ -98,7 +98,7 @@ public class Arquivo implements CAutenticacao {
                 System.out.println("Senha incorreta. Tente novamente.\n");
             
             System.out.println("INTERFACE DE ACESSO AO ARQUIVO.\n");
-            System.out.print("Insira a senha para ter acesso ao arquivo:");
+            System.out.println("Insira a senha para ter acesso ao arquivo:");
             verificadorSenha = scanner.nextLine();
             if (tentativasFalhas > 1) {
                 System.out.println("Você errou a senha " + tentativasFalhas
