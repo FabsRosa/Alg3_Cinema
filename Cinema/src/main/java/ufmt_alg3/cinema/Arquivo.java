@@ -92,7 +92,7 @@ public class Arquivo implements CAutenticacao {
         String verificadorSenha = "senha claramente errada";
         Integer tentativasFalhas = -1;
         while (!verificadorSenha.contains(senha)) {
-            tentativasFalhas++;
+            tentativasFalhas++; 
             Scanner scanner = new Scanner(System.in);
             if (tentativasFalhas == 1)
                 System.out.println("Senha incorreta. Tente novamente.\n");
@@ -112,6 +112,10 @@ public class Arquivo implements CAutenticacao {
                                         Retornando ao menu principal.""");
                     return false;
                 }
+                /* Essa leitura de scanner abaixo serve para consumir a quebra
+                 * de linha restante que o scanner.nextInt() deixa para trás;
+                */
+                scanner.nextLine();
             }
         }
         System.out.println("A senha está correta, saudações! :)");
