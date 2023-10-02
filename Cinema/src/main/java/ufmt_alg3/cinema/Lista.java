@@ -35,31 +35,19 @@ public class Lista {
     public void cadastrar(String nomeArquivo) throws ParseException, 
             IOException, ClassNotFoundException {
         Integer opcao = 2;
-        Integer idAtual;
-        
-        idAtual = Arquivo.buscarUltimoId(nomeArquivo);
-        Sessao.setProximoId(idAtual);
+        Sala salaEscolhida = null;
                 
             while (opcao == 2) {
                 Scanner scanner = new Scanner(System.in);
                 Sessao novaSessao;
                 System.out.println("Cadastro de Sessão.\n");
                 System.out.println(Sessao.getProximoId() + "° Sessão.");
-                /*
-                A implementação a seguir se refere ao cadastro da sala que ainda
-                está sendo feita.
-
-                System.out.println("Sala para a sessão: ");
-                String tipoSala = scanner.nextLine();
-                Sala sala = new Sala(parametros);
-                */
                 
                 System.out.println("Nome da sessão: ");
                 String nome = scanner.nextLine();
-                System.out.println("Data da sessão "
-                        + "(formato 'dd/MM/yyyy HH:mm:ss'): ");
+                System.out.println("Data da sessão (formato 'dd/MM/yyyy HH:mm:ss'): ");
                 String dataHora = scanner.nextLine();
-                novaSessao = new Sessao(nome, dataHora);
+                novaSessao = new Sessao(salaEscolhida, nome, dataHora);
                 lista.add(novaSessao);
                 setLista(lista);
                 //parte da sala p escolher
