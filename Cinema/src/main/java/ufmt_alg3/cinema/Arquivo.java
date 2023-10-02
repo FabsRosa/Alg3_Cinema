@@ -105,7 +105,7 @@ public class Arquivo implements CAutenticacao {
                         + " vezes seguidas.");
                 System.out.println("Deseja continuar? 1 Sim; 2 Não.");
                 Integer sair = scanner.nextInt();
-                if (sair == 1) {
+                if (sair == 2) {
                     System.out.println("""
                                        
                                         Você não tem acesso ao arquivo :-/ 
