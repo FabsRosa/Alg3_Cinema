@@ -7,9 +7,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.Files;
 
 /*
  * @author Virgínia Aguiar
@@ -52,13 +49,14 @@ public class Arquivo {
      * imprimí-los no console.
      * 
      * @param nomeArquivo
-     * @throws FileNotFoundException
-     * @throws IOException
-     * @throws ClassNotFoundException
+     * @throws java.io.FileNotFoundException
+     * @throws java.lang.ClassNotFoundException
+     * @throws java.io.IOException
+     * @throws java.lang.NullPointerException
     */
     
     public void listar(String nomeArquivo) throws FileNotFoundException,
-            IOException, ClassNotFoundException {
+            IOException, ClassNotFoundException, NullPointerException {
         ArrayList<Sessao> listaSessoes; 
         FileInputStream fileIn = new FileInputStream(nomeArquivo);
         ObjectInputStream objIn = new ObjectInputStream(fileIn);
@@ -72,37 +70,5 @@ public class Arquivo {
 
     public void limpar() {
         
-    }
-    
-    
-    /**
-     * O método {@code buscarUltimoId} que abre um arquivo e checa se ele 
-     * existe. Caso exista, ele desserializa os dados dele, guarda-os em uma 
-     * lista e busca pelo último elemento dela. Se não existir, então retorna
-     * 1
-     * 
-     * @param nomeArquivo representa o nome do arquivo a ser buscado o id.
-     * @throws java.io.IOException
-     * @throws java.lang.ClassNotFoundException
-     * @return Caso o arquivo exista, ele retorna um valor Integer que 
-     * representa o último valor cadastrado na lista. Se não existir, então 
-     * retorna 1.
-     */
-    
-    public static Integer buscarUltimoId(String nomeArquivo) throws IOException,
-            ClassNotFoundException {
-        Path caminhoArquivo = Paths.get(nomeArquivo);
-        
-        if (Files.exists(caminhoArquivo)) {
-            ArrayList<Sessao> listaSessoes; 
-            FileInputStream fileIn = new FileInputStream(nomeArquivo);
-            ObjectInputStream objIn = new ObjectInputStream(fileIn);
-            listaSessoes = (ArrayList<Sessao>) objIn.readObject();
-        
-            return (listaSessoes.get(listaSessoes.size()).getId());
-        } else {
-            System.out.println("O arquivo não existe. Retornando 1.");
-            return 1;
-        }
     }
 }
