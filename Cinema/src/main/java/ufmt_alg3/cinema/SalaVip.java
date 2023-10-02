@@ -6,15 +6,15 @@ package ufmt_alg3.cinema;
 
 /**
  *
- * @author Administrador
+ * @author virginia
  */
 public class SalaVip extends Sala {
     private String cadeirasConfortaveis;
     private String luzesAmarelas;
     private String tapetesVermelhos;
     
-    public SalaVip(String cadeiras, String luzes, String som, String cadeirasConfortaveis, String luzesAmarelas, String tapetesVermelhos) {
-        super(cadeiras, luzes, som); // Chamando o construtor da classe pai (Sala
+    public SalaVip(String luzes, String som, String cadeirasConfortaveis, String luzesAmarelas, String tapetesVermelhos) {
+        super(luzes, som); // Chamando o construtor da classe pai (Sala
         this.cadeirasConfortaveis = cadeirasConfortaveis;
         this.luzesAmarelas = luzesAmarelas;
         this.tapetesVermelhos = tapetesVermelhos;
