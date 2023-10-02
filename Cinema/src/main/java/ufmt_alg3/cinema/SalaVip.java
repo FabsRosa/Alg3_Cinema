@@ -13,17 +13,16 @@ public class SalaVip extends Sala {
     private String luzesAmarelas;
     private String tapetesVermelhos;
     
+    //sala de rico, ela possui luz amarela e também tapete vermelho
     public SalaVip(String luzes, String som, String cadeirasConfortaveis, String luzesAmarelas, String tapetesVermelhos) {
-        super(luzes, som); // Chamando o construtor da classe pai (Sala
+        super(luzes, som); // Chamando o construtor da classe pai (Sala)
         this.cadeirasConfortaveis = cadeirasConfortaveis;
         this.luzesAmarelas = luzesAmarelas;
         this.tapetesVermelhos = tapetesVermelhos;
     }
 
-    /**
-     *
-     * @return
-     */
+
+    
     public String getCadeirasConfortaveis() {
         return cadeirasConfortaveis;
     }

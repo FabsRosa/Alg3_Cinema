@@ -62,6 +62,11 @@ public class Lista {
                 novaSessao = new Sessao(nome, dataHora);
                 lista.add(novaSessao);
                 setLista(lista);
+                //parte da sala p escolher
+                
+                System.out.println("Garantimos uma esperiencia imersiva, personalizada para seu gosto"
+                        + "escolha a sala de sua prefêrencia :) ");
+               
                 System.out.println("Quer parar o cadastro? Sim = 1, Não = 2");
                 opcao = scanner.nextInt();
             }

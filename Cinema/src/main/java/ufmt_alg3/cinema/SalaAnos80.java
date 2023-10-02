@@ -12,25 +12,25 @@ public class SalaAnos80 extends Sala {
 
     private ArrayList<String> posters = new ArrayList();
 
+    
+    
     public boolean isLamparina() {
         return lamparina;
     }
-
-    public SalaAnos80(String cadeiras, String luzes, String som, boolean lamparina) {
-        super(cadeiras, luzes, som);
-        this.lamparina = lamparina;
-    }
-
-    public void addPosters(String poster) {
-        this.posters.add(poster);
-    }
-        public ArrayList<String> getPosters() {
-        return posters;
-    }
-    
     public void setLamparina(boolean lamparina) {
         this.lamparina = lamparina;
     }
+
+    
+    public void addPosters(String poster) {
+        this.posters.add(poster);
+    }
+        public ArrayList<String> getPosters() {  
+        return posters;
+    }
+    
+        
+        
     @Override
     public double calcularPrecoDoIngresso(int numeroDeIngressos) {
         return 80.0;
