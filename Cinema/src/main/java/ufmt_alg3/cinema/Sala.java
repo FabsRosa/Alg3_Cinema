@@ -4,6 +4,8 @@
  */
 package ufmt_alg3.cinema;
 
+import java.util.Scanner;
+
 /**
  *
  * @author vi
@@ -15,8 +17,28 @@ public abstract class Sala {
     String som;
     
 //metodos construtores para modelar as salas do jeito q eu quero ;)
+   
     public Sala() {
+    
+    }
+
+    /**
+     *
+     * @param scanner
+     * @return
+     */
+    public int apresentarOpcao(Scanner scanner){
         
+        System.out.println("Garantimos uma esperiencia imersiva e personalizada para você."
+                          + "Escolha a sala de sua prefêrencia :) ");
+        System.out.println("Digite 3 para a Sala com tematica de Anime");
+        System.out.println("Digite 4 para a Sala com tematica de Anos 80");
+        System.out.println("Digite 5 para a Sala com tematica de Era Medieval");
+        System.out.println("Digite 6 para a Sala apropriada para pessoas Neurodivergentes");
+        System.out.println("Digite 7 para a Sala com tematica de Terror");
+        System.out.println("Digite 8 para a Sala VIP");     
+         // Lê a escolha do usuário
+        return scanner.nextInt();
     }
     
      public Sala(String luzes, String som) {
