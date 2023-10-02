@@ -118,7 +118,7 @@ public class Arquivo implements CAutenticacao {
                 scanner.nextLine();
             }
         }
-        System.out.println("A senha está correta, saudações! :)");
+        System.out.println("A senha está correta, saudações! :) \n");
         return true;
     }
 }
