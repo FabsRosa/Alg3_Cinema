@@ -78,16 +78,4 @@ public class Sessao implements Serializable{
     public void setDataHora(Date horario) {
         this.dataHora = horario;
     }
-    
-    
-    /**
-     * Esse método lista todos os atributos de uma instância da classe Sessao no 
-     * console.
-     */
-    public void listarSessao() {
-        Sala sala = getTipoDeSessao();
-        sala.exibirDetalhesSala();
-        System.out.println("Nome: " + getNomeSessao());
-        System.out.println("Data/hora: " + getDataHora());
-    }
 }

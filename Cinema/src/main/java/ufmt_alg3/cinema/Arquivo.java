@@ -64,17 +64,53 @@ public class Arquivo implements CAutenticacao {
      * @throws java.lang.NullPointerException
     */
     
-    public void listar(String nomeArquivo) throws FileNotFoundException,
-            IOException, ClassNotFoundException, NullPointerException {
-        ArrayList<Sessao> listaSessoes; 
-        FileInputStream fileIn = new FileInputStream(nomeArquivo);
+    public void listar(String nomeArquivo) throws FileNotFoundException, IOException, ClassNotFoundException, NullPointerException {
+        ArrayList<Sessao> listaSessoes;
+        FileInputStream fileIn;
+        int sizeNomeSessao = 14; // Determina o tamanho da coluna "Nome da Sessão"
+
+        try {
+            fileIn = new FileInputStream(nomeArquivo);
+        } catch (FileNotFoundException nexc) {
+            System.out.println("Arquivo não encontrado!");
+            return;
+        }
+        
         ObjectInputStream objIn = new ObjectInputStream(fileIn);
         listaSessoes = (ArrayList<Sessao>) objIn.readObject();
         
-        System.out.println("Lista de sessões cadastradas no arquivo: \n");
-        for (Sessao sessaoAtual : listaSessoes) {
-            sessaoAtual.listarSessao();
-        }   
+        if (listaSessoes.isEmpty()) {
+            System.out.println("Arquivo vazio.");
+        } else {
+            // Definindo tamanho da coluna "Nome da Sessão"
+            for (int i = 0; i < listaSessoes.size(); i++) {
+                if (sizeNomeSessao < listaSessoes.get(i).getNomeSessao().length())
+                sizeNomeSessao = listaSessoes.get(i).getNomeSessao().length();
+            }
+
+            // Tabela apresentando os dados do arquivo
+            System.out.println("Conteúdo do arquivo: ");
+            System.out.println("");
+            
+            for (int i = 0; i < 32 + sizeNomeSessao; i++) {
+                System.out.printf("_");
+            }
+            System.out.println("");
+            
+            System.out.printf("%"+ sizeNomeSessao +"s |", "Nome da Sessão");
+            System.out.println(" Data e Hora");
+            
+            //Registros da tabela
+            for (int i = 0; i < listaSessoes.size(); i++) {
+                System.out.printf("%" + sizeNomeSessao + "s", listaSessoes.get(i).getNomeSessao());
+                System.out.println(" | " + listaSessoes.get(i).getDataHora());
+            }
+        }
+        
+        System.out.println("");
+        System.out.println("1. Retornar");
+        Scanner scanner = new Scanner(System.in);
+        scanner.nextInt();
     }
 
     public void limpar() {
@@ -98,7 +134,7 @@ public class Arquivo implements CAutenticacao {
                 tentativasFalhas++; 
                 Scanner scanner = new Scanner(System.in);
                 if (tentativasFalhas == 1)
-                    System.out.println("Senha incorreta. Tente novamente.\n");
+                    System.out.println("\nSenha incorreta. Tente novamente.\n");
 
                 System.out.println("INTERFACE DE ACESSO AO ARQUIVO.\n");
                 System.out.println("Insira a senha para ter acesso ao arquivo:");
@@ -121,7 +157,8 @@ public class Arquivo implements CAutenticacao {
                     scanner.nextLine();
                 }
             }
-            System.out.println("A senha está correta, saudações! :) \n");
+            System.out.println("A senha está correta, saudações! :)");
+            System.out.print("\n-------------------------\n");
             isVerificado = true;
             return true;
         }

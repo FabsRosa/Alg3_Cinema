@@ -98,11 +98,11 @@ public class Lista implements CAutenticacao{
         System.out.println("");
         System.out.println("1. Retornar");
         Scanner scanner = new Scanner(System.in);
-        scanner.nextLine();
+        scanner.nextInt();
     }
 
     public void excluir() {
-        
+
     }
     
     /**
@@ -146,7 +146,8 @@ public class Lista implements CAutenticacao{
                     scanner.nextLine();
                 }
             }
-            System.out.println("A senha está correta, saudações! :) \n");
+            System.out.println("A senha está correta, saudações! :)");
+            System.out.print("\n-------------------------\n");
             isVerificado = true;
             return true;
         }
