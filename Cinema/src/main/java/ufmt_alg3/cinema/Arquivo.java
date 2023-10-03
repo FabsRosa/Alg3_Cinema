@@ -46,6 +46,7 @@ public class Arquivo implements CAutenticacao {
         FileOutputStream fileOut = new FileOutputStream(nomeArquivo);
         ObjectOutputStream objOut = new ObjectOutputStream(fileOut);
         objOut.writeObject(lista);
+        System.out.println("Salvar dados\n");
         
         System.out.println("Lista de objetos foi salva no arquivo chamado \""
                 + nomeArquivo + "\" com sucesso!\n");
@@ -69,6 +70,7 @@ public class Arquivo implements CAutenticacao {
         FileInputStream fileIn;
         int sizeNomeSessao = 14; // Determina o tamanho da coluna "Nome da Sessão"
 
+        System.out.println("Listar arquivo físico\n");
         try {
             fileIn = new FileInputStream(nomeArquivo);
         } catch (FileNotFoundException nexc) {
@@ -114,7 +116,7 @@ public class Arquivo implements CAutenticacao {
     }
 
     public void limpar() {
-        
+        System.out.println("Limpar arquivo físico\n");
     }
     
     /**

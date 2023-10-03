@@ -64,6 +64,7 @@ public class Lista implements CAutenticacao{
 
     public void listar() {
         int sizeNomeSessao = 14; // Determina o tamanho da coluna "Nome da Sessão"
+        System.out.println("Listar array\n");
         
         if (this.lista.isEmpty()) {
             System.out.println("Array vazio.");
@@ -102,7 +103,38 @@ public class Lista implements CAutenticacao{
     }
 
     public void excluir() {
+        int input;
+        int option = 2;
+        boolean isDeleted;
+        
+        System.out.println("Excluir item do array");
+        
+        while (option == 2) {
+            isDeleted = false;
+            
+            System.out.print("\nDigite o ID do registro que deseja excluir: ");
+            Scanner scanner = new Scanner(System.in);
+            input = scanner.nextInt();
 
+            for (int i = 0; i < this.lista.size(); i++) {
+                if (this.lista.get( i).getId() == input) {
+                    this.lista.remove(i);
+                    isDeleted = true;
+                    break;
+                }
+            }
+            
+            if (isDeleted) {
+                System.out.println("\nRegistro excluído com sucesso.");
+            } else {
+                System.out.println("\nID não encontrado.");
+            }
+            
+            System.out.println("");
+            System.out.println("1. Retornar.");
+            System.out.println("2. Excluir outro registro.");
+            option = scanner.nextInt();
+        }
     }
     
     /**
