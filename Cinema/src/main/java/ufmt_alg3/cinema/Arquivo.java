@@ -1,5 +1,6 @@
 package ufmt_alg3.cinema;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -7,6 +8,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /*
@@ -33,19 +35,37 @@ public class Arquivo implements CAutenticacao {
     
     /**
      * O método {@code salvar} é utilizado para persistir os dados de cadastro
-     * de uma sessão do cinama em um arquivo.
+     * de uma sessão do cinema em um arquivo. Se o arquivo já existe, então ele
+     * acrescenta as novas sessões no final do arquivo. Senão, ele cria um novo
+     * arquivo e faz os registros nele.
      * 
      * @author Gabriel  
      * @param lista armazena uma lista de cadastros de sessões.
      * @param nomeArquivo é o nome do arquivo onde os dados serão guardados.
      * @throws java.io.IOException
+     * @throws java.lang.ClassNotFoundException
      */
 
     public void salvar(ArrayList<Sessao> lista, String nomeArquivo)
-            throws IOException {
+            throws IOException, ClassNotFoundException {
+        ArrayList<Sessao> dadosAtuaisArquivo = new ArrayList<>();
+        
+        // Verificando se o arquivo já existe no diretório padrão.
+        File arquivo = new File(nomeArquivo);
+        if (arquivo.exists()) {
+            // Caso exista, os dados atuais do arquivo serão guardados.
+            FileInputStream fileIn = new FileInputStream(nomeArquivo);
+            try (ObjectInputStream objIn = new ObjectInputStream(fileIn)) {
+                dadosAtuaisArquivo = (ArrayList<Sessao>) objIn.readObject();
+            }
+        }
+        
+        // Unindo as duas listas
+        dadosAtuaisArquivo.addAll(lista);
+        
         FileOutputStream fileOut = new FileOutputStream(nomeArquivo);
         ObjectOutputStream objOut = new ObjectOutputStream(fileOut);
-        objOut.writeObject(lista);
+        objOut.writeObject(dadosAtuaisArquivo);
         System.out.println("Salvar dados\n");
         
         System.out.println("Lista de objetos foi salva no arquivo chamado \""
