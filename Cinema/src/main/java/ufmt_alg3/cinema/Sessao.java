@@ -26,13 +26,10 @@ public class Sessao implements Serializable{
      * @param nomeSessao, dataHora.
      * @throws ParseException
      */
-    public Sessao (/*Sala tipoDeSessao,*/ String nomeSessao,
-            String dataHora) throws ParseException {
-        SimpleDateFormat dateFormat =
-                new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+    public Sessao (/*Sala tipoDeSessao,*/ String nomeSessao, String dataHora) throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         this.id = proximoId;
         Sessao.proximoId++;
-        //this.tipoDeSessao = new Sala();
         this.nomeSessao = nomeSessao;
         this.dataHora = dateFormat.parse(dataHora);
     }
