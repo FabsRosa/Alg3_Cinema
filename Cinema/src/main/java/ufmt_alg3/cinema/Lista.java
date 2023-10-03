@@ -32,17 +32,13 @@ public class Lista {
      * @throws java.io.IOException
      * @throws java.lang.ClassNotFoundException
      */
-    public void cadastrar(String nomeArquivo) throws ParseException, 
-            IOException, ClassNotFoundException {
+    public void cadastrar(String nomeArquivo) throws ParseException, IOException, ClassNotFoundException {
         Integer opcao = 2;
-        Integer idAtual;
-        
-        idAtual = Arquivo.buscarUltimoId(nomeArquivo);
-        Sessao.setProximoId(idAtual);
                 
             while (opcao == 2) {
                 Scanner scanner = new Scanner(System.in);
                 Sessao novaSessao;
+                
                 System.out.println("Cadastro de Sessão.\n");
                 System.out.println(Sessao.getProximoId() + "° Sessão.");
                 /*
@@ -80,9 +76,16 @@ public class Lista {
             }
 
             // Tabela apresentando os dados do array
+            System.out.println("");
             System.out.println("Conteúdo do array: ");
             System.out.println("");
-            System.out.printf("%s"," ID |");
+            
+            for (int i = 0; i < 20 + sizeNomeSessao; i++) {
+                System.out.printf("_");
+            }
+            System.out.println("");
+            
+            System.out.printf(" ID |");
             System.out.printf(" %"+ sizeNomeSessao +"s |", "Nome da Sessão");
             System.out.println(" Data e Hora");
             
@@ -92,6 +95,11 @@ public class Lista {
                 System.out.printf("%" + sizeNomeSessao + "s", this.lista.get(i).getNomeSessao());
                 System.out.println(" | " + this.lista.get(i).getDataHora());
             }
+            
+            System.out.println("");
+            System.out.println("1. Retornar");
+            Scanner scanner = new Scanner(System.in);
+            scanner.nextLine();
         }
     }
 
