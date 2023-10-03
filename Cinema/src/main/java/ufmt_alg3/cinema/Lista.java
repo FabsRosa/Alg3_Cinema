@@ -40,25 +40,22 @@ public class Lista {
                 Sessao novaSessao;
                 
                 System.out.println("Cadastro de Sessão.\n");
-                System.out.println(Sessao.getProximoId() + "° Sessão.");
-                /*
-                A implementação a seguir se refere ao cadastro da sala que ainda
-                está sendo feita.
-
-                System.out.println("Sala para a sessão: ");
-                String tipoSala = scanner.nextLine();
-                Sala sala = new Sala(parametros);
-                */
+                System.out.println("ID nº " + Sessao.getProximoId() + ".");
                 
-                System.out.println("Nome da sessão: ");
+                System.out.printf("Nome da sessão: ");
                 String nome = scanner.nextLine();
-                System.out.println("Data da sessão "
-                        + "(formato 'dd/MM/yyyy HH:mm:ss'): ");
+                System.out.printf("Data da sessão " + "(formato 'dd/MM/yyyy HH:mm:ss'): ");
                 String dataHora = scanner.nextLine();
+
                 novaSessao = new Sessao(nome, dataHora);
                 lista.add(novaSessao);
                 setLista(lista);
-                System.out.println("Quer parar o cadastro? Sim = 1, Não = 2");
+                
+                System.out.println("");
+                System.out.println("Sessão cadastrada com sucesso.");
+                System.out.println("");
+                System.out.println("1. Retornar.");
+                System.out.println("2. Cadastrar outra Sessão.");
                 opcao = scanner.nextInt();
             }
     }
@@ -76,11 +73,10 @@ public class Lista {
             }
 
             // Tabela apresentando os dados do array
-            System.out.println("");
             System.out.println("Conteúdo do array: ");
             System.out.println("");
             
-            for (int i = 0; i < 20 + sizeNomeSessao; i++) {
+            for (int i = 0; i < 37 + sizeNomeSessao; i++) {
                 System.out.printf("_");
             }
             System.out.println("");
@@ -95,12 +91,12 @@ public class Lista {
                 System.out.printf("%" + sizeNomeSessao + "s", this.lista.get(i).getNomeSessao());
                 System.out.println(" | " + this.lista.get(i).getDataHora());
             }
-            
-            System.out.println("");
-            System.out.println("1. Retornar");
-            Scanner scanner = new Scanner(System.in);
-            scanner.nextLine();
         }
+        
+        System.out.println("");
+        System.out.println("1. Retornar");
+        Scanner scanner = new Scanner(System.in);
+        scanner.nextLine();
     }
 
     public void excluir() {
