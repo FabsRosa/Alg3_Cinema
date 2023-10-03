@@ -48,24 +48,20 @@ public class Arquivo implements CAutenticacao {
 
     public void salvar(ArrayList<Sessao> lista, String nomeArquivo)
             throws IOException, ClassNotFoundException {
-        ArrayList<Sessao> dadosAtuaisArquivo = new ArrayList<>();
+        boolean arquivoExiste = false;
         
         // Verificando se o arquivo já existe no diretório padrão.
         File arquivo = new File(nomeArquivo);
         if (arquivo.exists()) {
-            // Caso exista, os dados atuais do arquivo serão guardados.
-            FileInputStream fileIn = new FileInputStream(nomeArquivo);
-            try (ObjectInputStream objIn = new ObjectInputStream(fileIn)) {
-                dadosAtuaisArquivo = (ArrayList<Sessao>) objIn.readObject();
-            }
+            /* Se existe, atribue true a variável arquivoExiste para append no
+            arquivo. */
+            arquivoExiste = true;
         }
         
-        // Unindo as duas listas
-        dadosAtuaisArquivo.addAll(lista);
-        
-        FileOutputStream fileOut = new FileOutputStream(nomeArquivo);
+        FileOutputStream fileOut = new FileOutputStream(nomeArquivo,
+                arquivoExiste);
         ObjectOutputStream objOut = new ObjectOutputStream(fileOut);
-        objOut.writeObject(dadosAtuaisArquivo);
+        objOut.writeObject(lista);
         System.out.println("Salvar dados\n");
         
         System.out.println("Lista de objetos foi salva no arquivo chamado \""
