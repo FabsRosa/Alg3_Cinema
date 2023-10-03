@@ -7,9 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.Files;
+import java.util.Scanner;
 
 /*
  * @author Virgínia Aguiar
@@ -17,7 +15,14 @@ import java.nio.file.Files;
  * @author Fabrício Rosa
  */
 
-public class Arquivo {
+/**
+ * Essa classe é responsável por todas as manipulações feitas no arquivo. São 
+ * elas: salvar registros de sessões serializados em um arquivo .dat; buscar um
+ * arquivo, desserializá-lo e listar os elementos de dentro dele; buscar o 
+ * arquivo com os salvamentos e limpá-lo.
+ */
+
+public class Arquivo implements CAutenticacao {
     
     private final String nomeDoArquivo = "arquivo_registros.dat";
     
@@ -52,13 +57,14 @@ public class Arquivo {
      * imprimí-los no console.
      * 
      * @param nomeArquivo
-     * @throws FileNotFoundException
-     * @throws IOException
-     * @throws ClassNotFoundException
+     * @throws java.io.FileNotFoundException
+     * @throws java.lang.ClassNotFoundException
+     * @throws java.io.IOException
+     * @throws java.lang.NullPointerException
     */
     
     public void listar(String nomeArquivo) throws FileNotFoundException,
-            IOException, ClassNotFoundException {
+            IOException, ClassNotFoundException, NullPointerException {
         ArrayList<Sessao> listaSessoes; 
         FileInputStream fileIn = new FileInputStream(nomeArquivo);
         ObjectInputStream objIn = new ObjectInputStream(fileIn);
@@ -74,35 +80,44 @@ public class Arquivo {
         
     }
     
-    
     /**
-     * O método {@code buscarUltimoId} que abre um arquivo e checa se ele 
-     * existe. Caso exista, ele desserializa os dados dele, guarda-os em uma 
-     * lista e busca pelo último elemento dela. Se não existir, então retorna
-     * 1
-     * 
-     * @param nomeArquivo representa o nome do arquivo a ser buscado o id.
-     * @throws java.io.IOException
-     * @throws java.lang.ClassNotFoundException
-     * @return Caso o arquivo exista, ele retorna um valor Integer que 
-     * representa o último valor cadastrado na lista. Se não existir, então 
-     * retorna 1.
+     * Esse método solicita ao usuário uma senha para poder acessar as funções 
+     * do arquivo, a fim de protegê-lo de potenciais ataques indesejados.
+     * @return true se a senha estiver certa. False caso: o usuário 
      */
-    
-    public static Integer buscarUltimoId(String nomeArquivo) throws IOException,
-            ClassNotFoundException {
-        Path caminhoArquivo = Paths.get(nomeArquivo);
-        
-        if (Files.exists(caminhoArquivo)) {
-            ArrayList<Sessao> listaSessoes; 
-            FileInputStream fileIn = new FileInputStream(nomeArquivo);
-            ObjectInputStream objIn = new ObjectInputStream(fileIn);
-            listaSessoes = (ArrayList<Sessao>) objIn.readObject();
-        
-            return (listaSessoes.get(listaSessoes.size()).getId());
-        } else {
-            System.out.println("O arquivo não existe. Retornando 1.");
-            return 1;
+    @Override
+    public boolean autenticar(){
+        String senha = "123mudar";
+        String verificadorSenha = "senha claramente errada";
+        Integer tentativasFalhas = -1;
+        while (!verificadorSenha.contains(senha)) {
+            tentativasFalhas++; 
+            Scanner scanner = new Scanner(System.in);
+            if (tentativasFalhas == 1)
+                System.out.println("Senha incorreta. Tente novamente.\n");
+            
+            System.out.println("INTERFACE DE ACESSO AO ARQUIVO.\n");
+            System.out.println("Insira a senha para ter acesso ao arquivo:");
+            verificadorSenha = scanner.nextLine();
+            if (tentativasFalhas > 1) {
+                System.out.println("Você errou a senha " + tentativasFalhas
+                        + " vezes seguidas.");
+                System.out.println("Deseja continuar? 1 Sim; 2 Não.");
+                Integer sair = scanner.nextInt();
+                if (sair == 2) {
+                    System.out.println("""
+                                       
+                                        Você não tem acesso ao arquivo :-/ 
+                                        Retornando ao menu principal.""");
+                    return false;
+                }
+                /* Essa leitura de scanner abaixo serve para consumir a quebra
+                 * de linha restante que o scanner.nextInt() deixa para trás;
+                */
+                scanner.nextLine();
+            }
         }
+        System.out.println("A senha está correta, saudações! :) \n");
+        return true;
     }
 }

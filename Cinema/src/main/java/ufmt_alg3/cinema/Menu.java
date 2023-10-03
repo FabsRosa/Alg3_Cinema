@@ -38,23 +38,50 @@ public class Menu {
             this.skipLine();
             switch (opt) {
                 case 1 -> {
-                    lista.cadastrar(arquivo.getNomeDoArquivo());
+                    if (lista.autenticar()) {
+                        lista.cadastrar(arquivo.getNomeDoArquivo());
+                    } else {
+                        break;
+                    }
                 }
                 case 2 -> {
-                    lista.listar();
+                    if (lista.autenticar()){
+                        lista.listar();
+                    } else {
+                        break;
+                    }
                 }
                 case 3 -> {
-                    arquivo.listar(arquivo.getNomeDoArquivo());
+                    if (arquivo.autenticar()){
+                        arquivo.listar(arquivo.getNomeDoArquivo());
+                    } else {
+                        break;
+                    }
+                    
                 }
                 case 4 -> {
-                    arquivo.salvar(lista.getLista(),
+                    if (arquivo.autenticar()) {
+                        arquivo.salvar(lista.getLista(),
                             arquivo.getNomeDoArquivo());
+                    } else {
+                        break;
+                    }
                 }
                 case 5 -> {
-                    lista.excluir();
+                    if (lista.autenticar()){
+                        lista.excluir();
+                    } else {
+                        break;
+                    }
+                    
                 }
                 case 6 -> {
-                    arquivo.limpar();
+                    if (arquivo.autenticar()) {
+                        arquivo.limpar();
+                    } else {
+                        break;
+                    }
+                    
                 }
                 case 7 -> {
                     continuar = false;

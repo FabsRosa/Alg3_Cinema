@@ -50,4 +50,3 @@ public class SalaNeurodivergente extends Sala {
         
     }
 }
-

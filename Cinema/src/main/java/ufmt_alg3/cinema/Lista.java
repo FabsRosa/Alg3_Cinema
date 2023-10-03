@@ -10,7 +10,7 @@ import java.util.Scanner;
  *         Fabrício Rosa
  */
 
-public class Lista {
+public class Lista implements CAutenticacao{
     
     private ArrayList<Sessao> lista = new ArrayList();
 
@@ -34,6 +34,7 @@ public class Lista {
      */
     public void cadastrar(String nomeArquivo) throws ParseException, IOException, ClassNotFoundException {
         Integer opcao = 2;
+        Sala salaEscolhida = null;
                 
             while (opcao == 2) {
                 Scanner scanner = new Scanner(System.in);
@@ -47,7 +48,7 @@ public class Lista {
                 System.out.printf("Data da sessão " + "(formato 'dd/MM/yyyy HH:mm:ss'): ");
                 String dataHora = scanner.nextLine();
 
-                novaSessao = new Sessao(nome, dataHora);
+                novaSessao = new Sessao(salaEscolhida, nome, dataHora);
                 lista.add(novaSessao);
                 setLista(lista);
                 
@@ -101,5 +102,46 @@ public class Lista {
 
     public void excluir() {
         
+    }
+    
+    /**
+     * Esse método gerencia qual usuário pode utilizar algum método da lista.
+     * 
+     * @return true se a senha estiver correta, senão retorna false.
+     */
+    @Override
+    public boolean autenticar() {
+        String senha = "lista123";
+        String verificarSenha = "eu estou, claramente, errada.";
+        Integer tentativasFalhas = -1;
+        while (!verificarSenha.contains(senha)) {            
+            tentativasFalhas++;
+            Scanner scanner = new Scanner(System.in);
+            if (tentativasFalhas == 1)
+                System.out.println("Senha incorreta. Tente novamente.");
+            
+            System.out.println("INTERFACE DE ACESSO A LISTA.\n");
+            System.out.println("Insira a senha da lista:");
+            verificarSenha = scanner.nextLine();
+            if (tentativasFalhas > 1) {
+                System.out.println("Você errou a senha " + tentativasFalhas
+                        + " vezes seguidas.");
+                System.out.println("Deseja continuar? 1 Sim; 2 Não.");
+                Integer sair = scanner.nextInt();
+                if (sair == 2) {
+                    System.out.println("""
+                                       Você não tem acesso a lista :-/ 
+                                       Retornando ao menu principal! \n
+                                       """);
+                    return false;
+                }
+                /* Essa leitura de scanner abaixo serve para consumir a quebra
+                 * de linha restante ao usar o scanner.nextInt();
+                */
+                scanner.nextLine();
+            }
+        }
+        System.out.println("A senha está correta, saudações! :) \n");
+        return true;
     }
 }
