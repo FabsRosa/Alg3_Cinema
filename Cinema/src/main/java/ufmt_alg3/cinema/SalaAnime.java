@@ -30,7 +30,11 @@ public class SalaAnime extends Sala {
     }
         @Override
     public void exibirDetalhesSala() {
-        System.out.println("Essa sala possui a premissa de ser temática ao universo de Animes e Mangás. decoração meticulosamente escolhida incorpora elementos distintivos das mencionadas séries, transportando os espectadores para os mundos dessas obras. Cada detalhe da decoração foi selecionado com o propósito de criar uma atmosfera que ressoa com a essência do anime 'Neon Genesis Evangelion' e 'Tokyo Ghoul'.");
+        System.out.println("Essa sala possui a premissa de ser temática ao universo de Animes e Mangás. "
+                + "decoração meticulosamente escolhida incorpora elementos distintivos das mencionadas séries,"
+                + " transportando os espectadores para os mundos dessas obras. Cada detalhe da decoração "
+                + "foi selecionado com o propósito de criar uma atmosfera que ressoa com a essência do anime "
+                + "'Neon Genesis Evangelion' e 'Tokyo Ghoul'.");
     }
     
     @Override        
