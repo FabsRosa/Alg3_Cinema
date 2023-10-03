@@ -25,6 +25,7 @@ import java.util.Scanner;
 public class Arquivo implements CAutenticacao {
     
     private final String nomeDoArquivo = "arquivo_registros.dat";
+    private static boolean isVerificado = false;
     
     public String getNomeDoArquivo() {
         return nomeDoArquivo;
@@ -87,37 +88,42 @@ public class Arquivo implements CAutenticacao {
      */
     @Override
     public boolean autenticar(){
-        String senha = "123mudar";
-        String verificadorSenha = "senha claramente errada";
-        Integer tentativasFalhas = -1;
-        while (!verificadorSenha.contains(senha)) {
-            tentativasFalhas++; 
-            Scanner scanner = new Scanner(System.in);
-            if (tentativasFalhas == 1)
-                System.out.println("Senha incorreta. Tente novamente.\n");
-            
-            System.out.println("INTERFACE DE ACESSO AO ARQUIVO.\n");
-            System.out.println("Insira a senha para ter acesso ao arquivo:");
-            verificadorSenha = scanner.nextLine();
-            if (tentativasFalhas > 1) {
-                System.out.println("Você errou a senha " + tentativasFalhas
-                        + " vezes seguidas.");
-                System.out.println("Deseja continuar? 1 Sim; 2 Não.");
-                Integer sair = scanner.nextInt();
-                if (sair == 2) {
-                    System.out.println("""
-                                       
-                                        Você não tem acesso ao arquivo :-/ 
-                                        Retornando ao menu principal.""");
-                    return false;
+        if (isVerificado) {
+            return true;
+        } else {
+            String senha = "123mudar";
+            String verificadorSenha = "senha claramente errada";
+            Integer tentativasFalhas = -1;
+            while (!verificadorSenha.contains(senha)) {
+                tentativasFalhas++; 
+                Scanner scanner = new Scanner(System.in);
+                if (tentativasFalhas == 1)
+                    System.out.println("Senha incorreta. Tente novamente.\n");
+
+                System.out.println("INTERFACE DE ACESSO AO ARQUIVO.\n");
+                System.out.println("Insira a senha para ter acesso ao arquivo:");
+                verificadorSenha = scanner.nextLine();
+                if (tentativasFalhas > 1) {
+                    System.out.println("Você errou a senha " + tentativasFalhas
+                            + " vezes seguidas.");
+                    System.out.println("Deseja continuar? 1 Sim; 2 Não.");
+                    Integer sair = scanner.nextInt();
+                    if (sair == 2) {
+                        System.out.println("""
+
+                                            Você não tem acesso ao arquivo :-/ 
+                                            Retornando ao menu principal.""");
+                        return false;
+                    }
+                    /* Essa leitura de scanner abaixo serve para consumir a quebra
+                     * de linha restante que o scanner.nextInt() deixa para trás;
+                    */
+                    scanner.nextLine();
                 }
-                /* Essa leitura de scanner abaixo serve para consumir a quebra
-                 * de linha restante que o scanner.nextInt() deixa para trás;
-                */
-                scanner.nextLine();
             }
+            System.out.println("A senha está correta, saudações! :) \n");
+            isVerificado = true;
+            return true;
         }
-        System.out.println("A senha está correta, saudações! :) \n");
-        return true;
     }
 }

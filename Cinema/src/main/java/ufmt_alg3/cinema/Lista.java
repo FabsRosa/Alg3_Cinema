@@ -13,6 +13,7 @@ import java.util.Scanner;
 public class Lista implements CAutenticacao{
     
     private ArrayList<Sessao> lista = new ArrayList();
+    private static boolean isVerificado = false;
 
     public ArrayList<Sessao> getLista() {
         return this.lista;
@@ -111,37 +112,43 @@ public class Lista implements CAutenticacao{
      */
     @Override
     public boolean autenticar() {
-        String senha = "lista123";
-        String verificarSenha = "eu estou, claramente, errada.";
-        Integer tentativasFalhas = -1;
-        while (!verificarSenha.contains(senha)) {            
-            tentativasFalhas++;
-            Scanner scanner = new Scanner(System.in);
-            if (tentativasFalhas == 1)
-                System.out.println("Senha incorreta. Tente novamente.");
-            
-            System.out.println("INTERFACE DE ACESSO A LISTA.\n");
-            System.out.println("Insira a senha da lista:");
-            verificarSenha = scanner.nextLine();
-            if (tentativasFalhas > 1) {
-                System.out.println("Você errou a senha " + tentativasFalhas
-                        + " vezes seguidas.");
-                System.out.println("Deseja continuar? 1 Sim; 2 Não.");
-                Integer sair = scanner.nextInt();
-                if (sair == 2) {
-                    System.out.println("""
-                                       Você não tem acesso a lista :-/ 
-                                       Retornando ao menu principal! \n
-                                       """);
-                    return false;
+        if (isVerificado) {
+            return true;
+        } else {
+            String senha = "lista123";
+            String verificarSenha = "eu estou, claramente, errada.";
+            Integer tentativasFalhas = -1;
+
+            while (!verificarSenha.contains(senha)) {            
+                tentativasFalhas++;
+                Scanner scanner = new Scanner(System.in);
+                if (tentativasFalhas == 1)
+                    System.out.println("\nSenha incorreta. Tente novamente.\n");
+
+                System.out.println("INTERFACE DE ACESSO A LISTA.\n");
+                System.out.println("Insira a senha da lista:");
+                verificarSenha = scanner.nextLine();
+                if (tentativasFalhas > 1) {
+                    System.out.println("Você errou a senha " + tentativasFalhas
+                            + " vezes seguidas.");
+                    System.out.println("Deseja continuar? 1 Sim; 2 Não.");
+                    Integer sair = scanner.nextInt();
+                    if (sair == 2) {
+                        System.out.println("""
+                                           Você não tem acesso a lista :-/ 
+                                           Retornando ao menu principal! \n
+                                           """);
+                        return false;
+                    }
+                    /* Essa leitura de scanner abaixo serve para consumir a quebra
+                     * de linha restante ao usar o scanner.nextInt();
+                    */
+                    scanner.nextLine();
                 }
-                /* Essa leitura de scanner abaixo serve para consumir a quebra
-                 * de linha restante ao usar o scanner.nextInt();
-                */
-                scanner.nextLine();
             }
+            System.out.println("A senha está correta, saudações! :) \n");
+            isVerificado = true;
+            return true;
         }
-        System.out.println("A senha está correta, saudações! :) \n");
-        return true;
     }
 }
