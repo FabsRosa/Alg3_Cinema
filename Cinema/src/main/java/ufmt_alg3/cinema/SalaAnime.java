@@ -45,7 +45,7 @@ public class SalaAnime extends Sala {
     
     @Override        
     public double calcularPrecoDoIngresso() {
-        return 85.90;
+        return (85.90);
     }
     
     @Override

@@ -46,7 +46,7 @@ public class SalaNeurodivergente extends Sala {
     
     @Override
     public double calcularPrecoDoIngresso(){
-        return 189.0;
+        return (189.0);
     }
     
     @Override

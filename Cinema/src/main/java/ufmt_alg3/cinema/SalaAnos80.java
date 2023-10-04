@@ -49,7 +49,7 @@ public class SalaAnos80 extends Sala {
         
     @Override
     public double calcularPrecoDoIngresso() {
-        return 80 ;
+        return (8000) ;
     }
 
     @Override
