@@ -57,6 +57,7 @@ public class Arquivo implements CAutenticacao {
             try (ObjectInputStream objIn = new ObjectInputStream(fileIn)){
                 dadosAtuais = (ArrayList<Sessao>) objIn.readObject();
             }
+            fileIn.close();
         }
         
         // Unindo os dados do arquivo e os novos.
@@ -65,6 +66,8 @@ public class Arquivo implements CAutenticacao {
         FileOutputStream fileOut = new FileOutputStream(nomeArquivo);
         try (ObjectOutputStream objOut = new ObjectOutputStream(fileOut)) {
             objOut.writeObject(dadosAtuais);
+            fileOut.close();
+            objOut.close();
         }
         System.out.println("Salvar dados\n");
             
