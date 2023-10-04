@@ -19,7 +19,9 @@ public class SalaTerror extends Sala {
         this.estatuasDeFantasmas = estatuasDeFantasmas;
         this.lencoisManchadosDeSangue = lencoisManchadosDeSangue;
     }
-
+    public SalaTerror() {
+        
+    }
     public boolean hasEstatuasDeLobisomen() {
         return estatuasDeLobisomen;
     }
@@ -45,13 +47,13 @@ public class SalaTerror extends Sala {
     }
     
     @Override
-    public double calcularPrecoDoIngresso(int numeroDeIngressos){
+    public double calcularPrecoDoIngresso(){
         return 1.0;
     }
     
     @Override
     public void exibirDetalhesSala(){
-        
+        System.out.println("Feita para gerar susto em casais jovens! Sala aterrorizante. Com estauas de Fantasmas e decoração feia");
     }
     
 }

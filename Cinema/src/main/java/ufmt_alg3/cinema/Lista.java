@@ -34,7 +34,10 @@ public class Lista implements CAutenticacao{
      * @throws java.lang.ClassNotFoundException
      */
     public void cadastrar(String nomeArquivo) throws ParseException, IOException, ClassNotFoundException {
-              Integer opcao = 2;
+        int opcao = 2;
+        int escolhaSala;
+        int salaConfirmada;
+              
                 
         while (opcao == 2) {
             Scanner scanner = new Scanner(System.in);
@@ -42,6 +45,58 @@ public class Lista implements CAutenticacao{
 
             System.out.println("Cadastro de Sessão.\n");
             System.out.println("ID nº " + (Sessao.getProximoId() - 1) + ".");
+            
+            do {
+                System.out.println("Escolha a sala de sua prefêrencia:) ");
+                System.out.println("Digite 1 para a Sala com tematica de Anime");
+                System.out.println("Digite 2 para a Sala com tematica dos Anos 80");
+                System.out.println("Digite 3 para a Sala com tematica Medieval");
+                System.out.println("Digite 4 para a Sala apropriada para pessoas Neurodivergentes");
+                System.out.println("Digite 5 para a Sala com tematica de Terror");
+                System.out.println("Digite 6 para a Sala VIP");    
+
+                escolhaSala = scanner.nextInt();
+
+                switch (escolhaSala) {
+                    case 1 -> {
+                        novaSessao.tipoDeSessao = new SalaAnime();
+                        break;
+                    }
+                    case 2 -> {
+                        novaSessao.tipoDeSessao = new SalaAnos80();
+                        break;
+                    }
+                    case 3 -> {
+                        novaSessao.tipoDeSessao = new SalaMedieval();
+                        break;
+                    }
+                    case 4 -> {
+                        novaSessao.tipoDeSessao = new SalaNeurodivergente();
+                        break;
+                    }
+                    case 5 -> {
+                        novaSessao.tipoDeSessao = new SalaTerror();
+                        break;
+                    }
+                    case 6 -> {
+                        novaSessao.tipoDeSessao = new SalaVip();
+                        break;
+                    }
+                    default -> {
+                        System.out.println("Opção Inválida.");
+                    }
+                }
+                
+                novaSessao.tipoDeSessao.exibirDetalhesSala();
+                novaSessao.tipoDeSessao.calcularPrecoDoIngresso();
+                
+                System.out.println("Você gostaria de confirmar sua escolha?");
+                System.out.println("1. Confirmar.");
+                System.out.println("2.Ver novamente as opções.");
+                
+                salaConfirmada = scanner.nextInt();
+                
+            } while (salaConfirmada == 2);
 
             System.out.printf("Nome da sessão: ");
             novaSessao.setNomeSessao(scanner.nextLine());

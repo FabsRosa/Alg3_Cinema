@@ -75,5 +75,5 @@ public abstract class Sala implements Serializable {
     }
     public abstract void exibirDetalhesSala();
     
-    public abstract double calcularPrecoDoIngresso(int numeroDeIngressos);
+    public abstract double calcularPrecoDoIngresso();
 }

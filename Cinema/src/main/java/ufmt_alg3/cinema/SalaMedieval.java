@@ -15,6 +15,9 @@ public class SalaMedieval extends Sala{
         this.chaoDeMadeira = chaoDeMadeira;
         this.PortasDeMetalPesadas = PortasDeMetalPesadas;
     }
+        public SalaMedieval() {
+        
+    }
      public boolean hasLuzDeTochas() {
         return luzDeTochas;
     }
@@ -32,7 +35,7 @@ public class SalaMedieval extends Sala{
     }
     
     @Override
-    public double calcularPrecoDoIngresso(int numeroDeIngressos){
+    public double calcularPrecoDoIngresso(){
         return 178.0;
     }
     

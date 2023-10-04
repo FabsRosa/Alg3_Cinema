@@ -8,14 +8,27 @@ import java.util.ArrayList;
 
 public class SalaAnos80 extends Sala {
     private boolean lamparina;
-    private final CarroDeVoltaParaOFuturo carro;
-    private final ArrayList<String> posters = new ArrayList();
+    private CarroDeVoltaParaOFuturo carro;
+    private ArrayList<String> posters = new ArrayList();
     
  public SalaAnos80(boolean lamparina, String marcaCarro, int anoCarro, String corCarro) {
         this.lamparina = lamparina;
         this.carro = new CarroDeVoltaParaOFuturo(marcaCarro, anoCarro, corCarro);
     }
-    
+    public SalaAnos80() {
+    }
+
+    public void setCarro(CarroDeVoltaParaOFuturo carro) {
+        this.carro = carro;
+    }
+
+    public void setPosters(ArrayList<String> posters) {
+        this.posters = posters;
+    }
+
+    public CarroDeVoltaParaOFuturo getCarro() {
+        return carro;
+    }
     
     public boolean isLamparina() {
         return lamparina;
@@ -35,8 +48,8 @@ public class SalaAnos80 extends Sala {
         
         
     @Override
-    public double calcularPrecoDoIngresso(int numeroDeIngressos) {
-        return (numeroDeIngressos * 80.0)+ 100 ;
+    public double calcularPrecoDoIngresso() {
+        return 80 ;
     }
 
     @Override

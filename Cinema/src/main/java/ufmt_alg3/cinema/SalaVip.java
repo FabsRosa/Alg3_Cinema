@@ -21,7 +21,9 @@ public class SalaVip extends Sala {
         this.tapetesVermelhos = tapetesVermelhos;
     }
 
-
+    public SalaVip() {
+        
+    }
     
     public String getCadeirasConfortaveis() {
         return cadeirasConfortaveis;
@@ -43,12 +45,12 @@ public class SalaVip extends Sala {
     }
     
     @Override
-    public double calcularPrecoDoIngresso(int numeroDeIngressos){
+    public double calcularPrecoDoIngresso(){
         return (8907.00); //ver a qntd de ingressos e multiplicar pelo valor 
     }
     
     @Override
     public void exibirDetalhesSala(){
-        System.out.println(" ");
+        System.out.println("Ideal após um dia cansativo, tudo nesta sala é confortável ");
     }
 }

@@ -12,7 +12,9 @@ public class SalaAnime extends Sala {
         super(cadeiras, luzes, som);
         
     }
-
+    public SalaAnime() {
+        
+    }
     public void setDecoracaoTokyoGhoul(boolean decoracaoTokyoGhoul) {
         this.decoracaoTokyoGhoul = decoracaoTokyoGhoul;
     }
@@ -38,7 +40,7 @@ public class SalaAnime extends Sala {
     }
     
     @Override        
-    public double calcularPrecoDoIngresso(int numeroDeIngressos) {
+    public double calcularPrecoDoIngresso() {
         return 85.90;
     }
 }

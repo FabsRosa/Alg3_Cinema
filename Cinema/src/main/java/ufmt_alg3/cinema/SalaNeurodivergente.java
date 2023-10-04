@@ -15,6 +15,9 @@ public class SalaNeurodivergente extends Sala {
         this.iluminacaoSuave = iluminacaoSuave;
         this.areaDeSensoryFriendly = areaDeSensoryFriendly;
     }
+        public SalaNeurodivergente() {
+        
+    }
 
     public boolean isFonesDeOuvir() {
         return fonesDeOuvir;
@@ -41,7 +44,7 @@ public class SalaNeurodivergente extends Sala {
     }
     
     @Override
-    public double calcularPrecoDoIngresso(int numeroDeIngressos){
+    public double calcularPrecoDoIngresso(){
         return 189.0;
     }
     
