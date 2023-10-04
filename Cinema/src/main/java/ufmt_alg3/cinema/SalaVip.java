@@ -13,7 +13,7 @@ public class SalaVip extends Sala {
     private String luzesAmarelas;
     private String tapetesVermelhos;
     
-    //sala de rico, ela possui luz amarela e também tapete vermelho
+    //sala de rico, ela possui luz amarela e também tapete 
     public SalaVip(String luzes, String som, String cadeirasConfortaveis, String luzesAmarelas, String tapetesVermelhos) {
         super(luzes, som); // Chamando o construtor da classe pai (Sala)
         this.cadeirasConfortaveis = cadeirasConfortaveis;
@@ -44,12 +44,11 @@ public class SalaVip extends Sala {
     
     @Override
     public double calcularPrecoDoIngresso(int numeroDeIngressos){
-        return 8907.00;
+        return (8907.00); //ver a qntd de ingressos e multiplicar pelo valor 
     }
     
     @Override
     public void exibirDetalhesSala(){
-        
+        System.out.println(" ");
     }
-       
 }
