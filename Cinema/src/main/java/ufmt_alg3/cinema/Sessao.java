@@ -76,7 +76,11 @@ public class Sessao implements Serializable{
         return dataHora;
     }
 
-    public boolean setDataHora(String dataHora) throws ParseException {
+    public void setDataHora(Date dataHora) {
+        this.dataHora = dataHora;
+    }
+
+    public boolean defStrDataHora(String dataHora) throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         
         try {
@@ -85,5 +89,5 @@ public class Sessao implements Serializable{
         } catch (ParseException nexc) {
             return false;
         }
-    } 
+    }
 }

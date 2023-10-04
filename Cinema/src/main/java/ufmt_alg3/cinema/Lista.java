@@ -114,7 +114,7 @@ public class Lista implements CAutenticacao{
             novaSessao.setNomeSessao(scanner.nextLine());
 
             System.out.printf("Data da sessão " + "(formato 'dd/MM/yyyy HH:mm:ss'): ");
-            while (!novaSessao.setDataHora(scanner.nextLine())) {
+            while (!novaSessao.defStrDataHora(scanner.nextLine())) {
                 System.out.println("A Data ou Hora não está com formatação compatível.\n");
                 System.out.printf("Data da sessão " + "(formato 'dd/MM/yyyy HH:mm:ss'): ");
             }
