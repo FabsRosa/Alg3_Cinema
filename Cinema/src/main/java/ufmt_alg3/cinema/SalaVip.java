@@ -46,7 +46,7 @@ public class SalaVip extends Sala {
     
     @Override
     public double calcularPrecoDoIngresso(){
-        return (8907.00); //ver a qntd de ingressos e multiplicar pelo valor 
+        return (8907.00);  
     }
     
     @Override

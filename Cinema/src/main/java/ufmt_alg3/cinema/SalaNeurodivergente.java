@@ -50,6 +50,7 @@ public class SalaNeurodivergente extends Sala {
     
     @Override
     public void exibirDetalhesSala(){
-        
+        System.out.println("Projetada com a ideia de ser utilizada por pessoas Neurodivergente "
+                + "possui fones para supressão de ruidos, confortável para todos os espectadores.");
     }
 }

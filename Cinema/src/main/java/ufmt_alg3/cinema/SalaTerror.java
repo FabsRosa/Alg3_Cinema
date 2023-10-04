@@ -48,7 +48,7 @@ public class SalaTerror extends Sala {
     
     @Override
     public double calcularPrecoDoIngresso(){
-        return 1.0;
+        return 196.0;
     }
     
     @Override

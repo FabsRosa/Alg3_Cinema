@@ -41,7 +41,9 @@ public class SalaMedieval extends Sala{
     
     @Override
     public void exibirDetalhesSala(){
-        System.out.println("Essa sala possui a premissa de ser um ambiente medieval, possui o chão de madeira, e tochas de fogo como luzes, afim de passar algumas sessoes que remetem a esse estilo, como senhor dos aneis");
+        System.out.println("Essa sala possui a premissa de ser um ambiente medieval,"
+                + " possui o chão de madeira, e tochas de fogo como luzes, afim de passar algumas sessoes "
+                + "que remetem a esse estilo, como senhor dos aneis");
  
     }
     
