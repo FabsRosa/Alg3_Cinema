@@ -100,9 +100,12 @@ public class Lista implements CAutenticacao{
                 System.out.println("2.Ver novamente as opções.");
                 
                 salaConfirmada = scanner.nextInt();
-                
             } while (salaConfirmada == 2);
-
+            /* A leitura de scanner.nextLine() abaixo consome a quebra de linha
+            gerada pela leitura do inteiro dentro do loop do-while anterior. 
+            Isso evita que o cadastro de nome da sessão seja pulado. */
+            scanner.nextLine();
+            
             System.out.printf("Nome da sessão: ");
             novaSessao.setNomeSessao(scanner.nextLine());
 
