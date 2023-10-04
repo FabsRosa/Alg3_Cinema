@@ -145,18 +145,23 @@ public class Arquivo implements CAutenticacao {
     }
 /*
 
-         if (arquivo.exists()) {
-            boolean sucesso = arquivo.delete();
-        if (sucesso) {
-                System.out.println("Arquivo foi limpo com sucesso!");
+ublic class ExcluirArquivo {
+    public static void main(String[] args) {
+
+        File arquivoParaExcluir = new File(caminhoDoArquivo);
+
+        if (arquivoParaExcluir.exists()) {
+
+            if (arquivoParaExcluir.delete()) {
+                System.out.println("Arquivo excluído com sucesso!");
             } else {
-                System.out.println("Não foi possível limpar o arquivo, tente novamente :) ");
+                System.out.println("Não foi possível excluir o arquivo.");
             }
         } else {
-            System.out.println("Ahh, o arquivo não existe :( ");
-            }
+            System.out.println("O arquivo não existe.");
         }
     }
+}
 */
 
 
