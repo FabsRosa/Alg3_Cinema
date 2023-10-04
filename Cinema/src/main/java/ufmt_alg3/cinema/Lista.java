@@ -60,26 +60,32 @@ public class Lista implements CAutenticacao{
                 switch (escolhaSala) {
                     case 1 -> {
                         novaSessao.tipoDeSessao = new SalaAnime();
+                        novaSessao.tipoDeSessao.calcularPrecoDoIngresso();
                         break;
                     }
                     case 2 -> {
                         novaSessao.tipoDeSessao = new SalaAnos80();
+                        novaSessao.tipoDeSessao.calcularPrecoDoIngresso();
                         break;
                     }
                     case 3 -> {
                         novaSessao.tipoDeSessao = new SalaMedieval();
+                        novaSessao.tipoDeSessao.calcularPrecoDoIngresso();
                         break;
                     }
                     case 4 -> {
                         novaSessao.tipoDeSessao = new SalaNeurodivergente();
+                        novaSessao.tipoDeSessao.calcularPrecoDoIngresso();
                         break;
                     }
                     case 5 -> {
                         novaSessao.tipoDeSessao = new SalaTerror();
+                        novaSessao.tipoDeSessao.calcularPrecoDoIngresso();
                         break;
                     }
                     case 6 -> {
                         novaSessao.tipoDeSessao = new SalaVip();
+                        novaSessao.tipoDeSessao.calcularPrecoDoIngresso();
                         break;
                     }
                     default -> {
@@ -88,7 +94,6 @@ public class Lista implements CAutenticacao{
                 }
                 
                 novaSessao.tipoDeSessao.exibirDetalhesSala();
-                novaSessao.tipoDeSessao.calcularPrecoDoIngresso();
                 
                 System.out.println("Você gostaria de confirmar sua escolha?");
                 System.out.println("1. Confirmar.");
