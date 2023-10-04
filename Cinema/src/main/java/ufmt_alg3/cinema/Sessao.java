@@ -28,15 +28,16 @@ public class Sessao implements Serializable{
      * @param dataHora a data e o horário que irá passar a sessão.
      * @throws java.text.ParseException
      */
-    public Sessao (Sala tipoDeSessao, String nomeSessao, String dataHora)
-            throws ParseException {
-        SimpleDateFormat dateFormat =
-                new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        this.id = proximoId;
-        Sessao.proximoId++;
+    public Sessao(Sala tipoDeSessao, String nomeSessao, String dataHora) throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        this.id = proximoId++;
         this.tipoDeSessao = tipoDeSessao;
         this.nomeSessao = nomeSessao;
         this.dataHora = dateFormat.parse(dataHora);
+    }
+    
+    public Sessao() {
+        this.id = proximoId++;
     }
     
     public Integer getId() {
@@ -75,7 +76,14 @@ public class Sessao implements Serializable{
         return dataHora;
     }
 
-    public void setDataHora(Date horario) {
-        this.dataHora = horario;
+    public boolean setDataHora(String dataHora) throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        
+        try {
+            this.dataHora = dateFormat.parse(dataHora);
+            return true;
+        } catch (ParseException nexc) {
+            return false;
+        }
     }
 }

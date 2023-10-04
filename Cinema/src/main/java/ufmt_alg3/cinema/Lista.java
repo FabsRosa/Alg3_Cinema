@@ -34,32 +34,34 @@ public class Lista implements CAutenticacao{
      * @throws java.lang.ClassNotFoundException
      */
     public void cadastrar(String nomeArquivo) throws ParseException, IOException, ClassNotFoundException {
-        Integer opcao = 2;
-        Sala salaEscolhida = null;
+              Integer opcao = 2;
                 
-            while (opcao == 2) {
-                Scanner scanner = new Scanner(System.in);
-                Sessao novaSessao;
-                
-                System.out.println("Cadastro de Sessão.\n");
-                System.out.println("ID nº " + Sessao.getProximoId() + ".");
-                
-                System.out.printf("Nome da sessão: ");
-                String nome = scanner.nextLine();
-                System.out.printf("Data da sessão " + "(formato 'dd/MM/yyyy HH:mm:ss'): ");
-                String dataHora = scanner.nextLine();
+        while (opcao == 2) {
+            Scanner scanner = new Scanner(System.in);
+            Sessao novaSessao = new Sessao();
 
-                novaSessao = new Sessao(salaEscolhida, nome, dataHora);
-                lista.add(novaSessao);
-                setLista(lista);
-                
-                System.out.println("");
-                System.out.println("Sessão cadastrada com sucesso.");
-                System.out.println("");
-                System.out.println("1. Retornar.");
-                System.out.println("2. Cadastrar outra Sessão.");
-                opcao = scanner.nextInt();
+            System.out.println("Cadastro de Sessão.\n");
+            System.out.println("ID nº " + (Sessao.getProximoId() - 1) + ".");
+
+            System.out.printf("Nome da sessão: ");
+            novaSessao.setNomeSessao(scanner.nextLine());
+
+            System.out.printf("Data da sessão " + "(formato 'dd/MM/yyyy HH:mm:ss'): ");
+            while (!novaSessao.setDataHora(scanner.nextLine())) {
+                System.out.println("A Data ou Hora não está com formatação compatível.\n");
+                System.out.printf("Data da sessão " + "(formato 'dd/MM/yyyy HH:mm:ss'): ");
             }
+
+            lista.add(novaSessao);
+            setLista(lista);
+
+            System.out.println("");
+            System.out.println("Sessão cadastrada com sucesso.");
+            System.out.println("");
+            System.out.println("1. Retornar.");
+            System.out.println("2. Cadastrar outra Sessão.");
+            opcao = scanner.nextInt();
+        }
     }
 
     public void listar() {
@@ -107,7 +109,7 @@ public class Lista implements CAutenticacao{
         int option = 2;
         boolean isDeleted;
         
-        System.out.println("Excluir item do array");
+        System.out.println("Excluir item do array\n");
         
         while (option == 2) {
             isDeleted = false;
