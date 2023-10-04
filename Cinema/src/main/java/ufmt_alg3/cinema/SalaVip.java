@@ -25,6 +25,8 @@ public class SalaVip extends Sala {
         
     }
     
+    
+    
     public String getCadeirasConfortaveis() {
         return cadeirasConfortaveis;
     }

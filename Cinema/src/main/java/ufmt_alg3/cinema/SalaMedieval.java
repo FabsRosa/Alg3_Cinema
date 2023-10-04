@@ -36,7 +36,7 @@ public class SalaMedieval extends Sala{
     
     @Override
     public double calcularPrecoDoIngresso(){
-        return 178.0;
+        return (178.0);
     }
     
     @Override

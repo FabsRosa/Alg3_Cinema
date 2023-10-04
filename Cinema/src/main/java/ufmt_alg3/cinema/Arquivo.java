@@ -137,11 +137,23 @@ public class Arquivo implements CAutenticacao {
         Scanner scanner = new Scanner(System.in);
         scanner.nextInt();
     }
+/*
 
-    public void limpar() {
-        System.out.println("Limpar arquivo físico\n");
+         if (arquivo.exists()) {
+            boolean sucesso = arquivo.delete();
+        if (sucesso) {
+                System.out.println("Arquivo foi limpo com sucesso!");
+            } else {
+                System.out.println("Não foi possível limpar o arquivo, tente novamente :) ");
+            }
+        } else {
+            System.out.println("Ahh, o arquivo não existe :( ");
+            }
+        }
     }
-    
+*/
+
+
     /**
      * Esse método solicita ao usuário uma senha para poder acessar as funções 
      * do arquivo, a fim de protegê-lo de potenciais ataques indesejados.
