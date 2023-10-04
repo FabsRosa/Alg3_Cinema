@@ -51,6 +51,12 @@ public class SalaVip extends Sala {
     
     @Override
     public void exibirDetalhesSala(){
-        System.out.println("Ideal após um dia cansativo, tudo nesta sala é confortável ");
+        System.out.println("Ideal após um dia cansativo, tudo nesta sala é confortável. \n");
+        apresentarValorIngresso();
+    }
+    
+    @Override
+    public String retNomeSala() {
+        return "Sala VIP";
     }
 }

@@ -30,21 +30,26 @@ public class SalaAnime extends Sala {
     public boolean isDecoracaoEvangelion() {
         return decoracaoEvangelion;
     }
-        @Override
+    
+    @Override
     public void exibirDetalhesSala() {
-        System.out.println("Essa sala possui a premissa de ser temática ao universo de Animes e Mangás. "
-                + ""
-                + "decoração meticulosamente escolhida incorpora elementos distintivos das mencionadas séries,"
-                + ""
-                + " transportando os espectadores para os mundos dessas obras. Cada detalhe da decoração "
-                + ""
-                + "foi selecionado com o propósito de criar uma atmosfera que ressoa com a essência do anime "
-                + ""
-                + "'Neon Genesis Evangelion' e 'Tokyo Ghoul'.");
+        System.out.println("""
+                           Essa sala possui a premissa  de  ser  tem\u00e1tica ao universo de Animes e Mang\u00e1s. 
+                           decora\u00e7\u00e3o  meticulosamente  escolhida   incorpora  elementos  distintivos  das 
+                           mencionadas s\u00e9ries, transportando os espectadores para os mundos dessas obras. 
+                           Cada  detalhe  da  decora\u00e7\u00e3o  foi selecionado com o  prop\u00f3sito  de  criar  uma 
+                           atmosfera  que  ressoa  com a ess\u00eancia do  anime  'Neon Genesis Evangelion'  e 
+                           'Tokyo Ghoul'.""");
+        apresentarValorIngresso();
     }
     
     @Override        
     public double calcularPrecoDoIngresso() {
         return 85.90;
+    }
+    
+    @Override
+    public String retNomeSala() {
+        return "Sala Anime";
     }
 }
