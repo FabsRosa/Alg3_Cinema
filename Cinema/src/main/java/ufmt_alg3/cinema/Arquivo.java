@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 /*
@@ -48,24 +47,32 @@ public class Arquivo implements CAutenticacao {
 
     public void salvar(ArrayList<Sessao> lista, String nomeArquivo)
             throws IOException, ClassNotFoundException {
-        boolean arquivoExiste = false;
+        // Coleção para armazenar os dados do arquivo.
+        ArrayList<Sessao> dadosAtuais = new ArrayList<>();
         
         // Verificando se o arquivo já existe no diretório padrão.
         File arquivo = new File(nomeArquivo);
         if (arquivo.exists()) {
-            /* Se existe, atribue true a variável arquivoExiste para append no
-            arquivo. */
-            arquivoExiste = true;
+            FileInputStream fileIn = new FileInputStream(nomeArquivo);
+            try (ObjectInputStream objIn = new ObjectInputStream(fileIn)){
+                dadosAtuais = (ArrayList<Sessao>) objIn.readObject();
+            }
+            fileIn.close();
         }
         
-        FileOutputStream fileOut = new FileOutputStream(nomeArquivo,
-                arquivoExiste);
-        ObjectOutputStream objOut = new ObjectOutputStream(fileOut);
-        objOut.writeObject(lista);
-        System.out.println("Salvar dados\n");
+        // Unindo os dados do arquivo e os novos.
+        dadosAtuais.addAll(lista);
         
-        System.out.println("Lista de objetos foi salva no arquivo chamado \""
-                + nomeArquivo + "\" com sucesso!\n");
+        FileOutputStream fileOut = new FileOutputStream(nomeArquivo);
+        try (ObjectOutputStream objOut = new ObjectOutputStream(fileOut)) {
+            objOut.writeObject(dadosAtuais);
+            fileOut.close();
+            objOut.close();
+        }
+        System.out.println("Salvar dados\n");
+            
+            System.out.println("Lista de objetos foi salva no arquivo chamado \""
+                    + nomeArquivo + "\" com sucesso!\n");
     }    
 
     /**
