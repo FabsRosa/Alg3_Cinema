@@ -53,7 +53,14 @@ public class SalaTerror extends Sala {
     
     @Override
     public void exibirDetalhesSala(){
-        System.out.println("Feita para gerar susto em casais jovens! Sala aterrorizante. Com estauas de Fantasmas e decoração feia");
+        System.out.println("""
+                           Feita  para gerar susto em casais jovens! Sala aterrorizante. Com est\u00e1tuas  de 
+                           fantasmas e decora\u00e7\u00e3o horripilante""");
+        apresentarValorIngresso();
     }
     
+    @Override
+    public String retNomeSala() {
+        return "Sala Terror";
+    }
 }

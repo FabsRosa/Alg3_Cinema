@@ -19,25 +19,6 @@ public abstract class Sala implements Serializable {
     public Sala() {
     
     }
-
-    /**
-     *
-     * @param scanner
-     * @return
-     */
-    public int apresentarOpcao(Scanner scanner){
-        
-        System.out.println("Garantimos uma esperiencia imersiva e personalizada para você."
-                          + "Escolha a sala de sua prefêrencia :) ");
-        System.out.println("Digite 3 para a Sala com tematica de Anime");
-        System.out.println("Digite 4 para a Sala com tematica de Anos 80");
-        System.out.println("Digite 5 para a Sala com tematica de Era Medieval");
-        System.out.println("Digite 6 para a Sala apropriada para pessoas Neurodivergentes");
-        System.out.println("Digite 7 para a Sala com tematica de Terror");
-        System.out.println("Digite 8 para a Sala VIP");     
-         // Lê a escolha do usuário
-        return scanner.nextInt();
-    }
     
      public Sala(String luzes, String som) {
         this.luzes = luzes;
@@ -73,6 +54,24 @@ public abstract class Sala implements Serializable {
     public void setSom(String som) {
         this.som = som;
     }
+    
+    public static void apresentarOpcao(){
+        
+        System.out.println("\nEscolha a sala de sua prefêrencia: \n");
+        System.out.println("1. Sala com tematica de Anime");
+        System.out.println("2. Sala com tematica dos Anos 80");
+        System.out.println("3. Sala com tematica Medieval");
+        System.out.println("4. Sala apropriada para pessoas Neurodivergentes");
+        System.out.println("5. Sala com tematica de Terror");
+        System.out.println("6. Sala VIP");  
+    }
+        
+    public void apresentarValorIngresso() {
+        System.out.printf("\nValor do Ingresso: R$ %6.2f", this.calcularPrecoDoIngresso());
+    }
+    
+    public abstract String retNomeSala();
+    
     public abstract void exibirDetalhesSala();
     
     public abstract double calcularPrecoDoIngresso();

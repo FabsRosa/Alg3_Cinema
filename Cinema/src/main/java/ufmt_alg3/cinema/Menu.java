@@ -2,6 +2,7 @@ package ufmt_alg3.cinema;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -19,7 +20,7 @@ public class Menu {
         boolean continuar = true;
         
         while (continuar) {
-            this.skipLine();
+            Menu.skipLine();
             
             Integer opt;
             Scanner scanner = new Scanner(System.in);
@@ -32,10 +33,16 @@ public class Menu {
             System.out.println("5. Excluir item do array.");
             System.out.println("6. Limpar arquivo físico.");
             System.out.println("7. Sair.");
-            
-            opt = scanner.nextInt();
-            
-            this.skipLine();
+            try {
+                opt = scanner.nextInt();
+            } catch (InputMismatchException nexc) {
+                Menu.skipLine();
+                System.out.print("Opção Inválida.");
+                Menu.clearBuffer(scanner);
+                continue;
+            }
+           
+            Menu.skipLine();
             switch (opt) {
                 case 1 -> {
                     if (lista.autenticar()) {
@@ -86,13 +93,19 @@ public class Menu {
                 case 7 -> {
                     continuar = false;
                 }
-                default -> System.out.println("Opção Inválida.");
+                default -> System.out.print("Opção Inválida.");
             }
         }
     }
     
-    public void skipLine() {
+    public static void skipLine() {
 
         System.out.print("\n-------------------------\n");
+    }
+    
+    public static void clearBuffer(Scanner scanner) {
+        if (scanner.hasNextLine()) {
+            scanner.nextLine();
+        }
     }
 }

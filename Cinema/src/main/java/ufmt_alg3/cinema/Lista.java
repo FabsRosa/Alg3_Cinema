@@ -2,6 +2,7 @@ package ufmt_alg3.cinema;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -36,8 +37,7 @@ public class Lista implements CAutenticacao{
     public void cadastrar(String nomeArquivo) throws ParseException, IOException, ClassNotFoundException {
         int opcao = 2;
         int escolhaSala;
-        int salaConfirmada;
-              
+        int salaConfirmada = 0;
                 
         while (opcao == 2) {
             Scanner scanner = new Scanner(System.in);
@@ -47,63 +47,70 @@ public class Lista implements CAutenticacao{
             System.out.println("ID nº " + (Sessao.getProximoId() - 1) + ".");
             
             do {
-                System.out.println("Escolha a sala de sua prefêrencia:) ");
-                System.out.println("Digite 1 para a Sala com tematica de Anime");
-                System.out.println("Digite 2 para a Sala com tematica dos Anos 80");
-                System.out.println("Digite 3 para a Sala com tematica Medieval");
-                System.out.println("Digite 4 para a Sala apropriada para pessoas Neurodivergentes");
-                System.out.println("Digite 5 para a Sala com tematica de Terror");
-                System.out.println("Digite 6 para a Sala VIP");    
-
-                escolhaSala = scanner.nextInt();
+                Sala.apresentarOpcao();
+                
+                try {
+                    escolhaSala = scanner.nextInt();
+                    Menu.clearBuffer(scanner);
+                } catch (InputMismatchException nexc) {
+                    Menu.skipLine();
+                    System.out.print("Opção Inválida.");
+                    Menu.clearBuffer(scanner);
+                    continue;
+                }
 
                 switch (escolhaSala) {
                     case 1 -> {
-                        novaSessao.tipoDeSessao = new SalaAnime();
-                        novaSessao.tipoDeSessao.calcularPrecoDoIngresso();
+                        novaSessao.setTipoDeSessao(new SalaAnime());
                         break;
                     }
                     case 2 -> {
-                        novaSessao.tipoDeSessao = new SalaAnos80();
-                        novaSessao.tipoDeSessao.calcularPrecoDoIngresso();
+                        novaSessao.setTipoDeSessao(new SalaAnos80());
                         break;
                     }
                     case 3 -> {
-                        novaSessao.tipoDeSessao = new SalaMedieval();
-                        novaSessao.tipoDeSessao.calcularPrecoDoIngresso();
+                        novaSessao.setTipoDeSessao(new SalaMedieval());
                         break;
                     }
                     case 4 -> {
-                        novaSessao.tipoDeSessao = new SalaNeurodivergente();
-                        novaSessao.tipoDeSessao.calcularPrecoDoIngresso();
+                        novaSessao.setTipoDeSessao(new SalaNeurodivergente());
                         break;
                     }
                     case 5 -> {
-                        novaSessao.tipoDeSessao = new SalaTerror();
-                        novaSessao.tipoDeSessao.calcularPrecoDoIngresso();
+                        novaSessao.setTipoDeSessao(new SalaTerror());
                         break;
                     }
                     case 6 -> {
-                        novaSessao.tipoDeSessao = new SalaVip();
-                        novaSessao.tipoDeSessao.calcularPrecoDoIngresso();
+                        novaSessao.setTipoDeSessao(new SalaVip());
                         break;
                     }
                     default -> {
+                        Menu.skipLine();
                         System.out.println("Opção Inválida.");
+                        Menu.clearBuffer(scanner);
+                        continue;
                     }
                 }
                 
-                novaSessao.tipoDeSessao.exibirDetalhesSala();
+                System.out.println("");
+                novaSessao.getTipoDeSessao().exibirDetalhesSala();
                 
-                System.out.println("Você gostaria de confirmar sua escolha?");
+                System.out.println("\nVocê gostaria de confirmar sua escolha?\n");
                 System.out.println("1. Confirmar.");
-                System.out.println("2.Ver novamente as opções.");
+                System.out.println("2. Voltar às opções.");
                 
-                salaConfirmada = scanner.nextInt();
-                
-            } while (salaConfirmada == 2);
+                try {
+                    salaConfirmada = scanner.nextInt();
+                    Menu.clearBuffer(scanner);
+                } catch (InputMismatchException nexc) {
+                    Menu.skipLine();
+                    System.out.print("Opção Inválida.");
+                    Menu.clearBuffer(scanner);
+                    salaConfirmada = 2;
+                }
+            } while (salaConfirmada != 1);
 
-            System.out.printf("Nome da sessão: ");
+            System.out.printf("\nNome da sessão: ");
             novaSessao.setNomeSessao(scanner.nextLine());
 
             System.out.printf("Data da sessão " + "(formato 'dd/MM/yyyy HH:mm:ss'): ");
@@ -120,7 +127,16 @@ public class Lista implements CAutenticacao{
             System.out.println("");
             System.out.println("1. Retornar.");
             System.out.println("2. Cadastrar outra Sessão.");
-            opcao = scanner.nextInt();
+            
+            try {
+                opcao = scanner.nextInt();
+                Menu.clearBuffer(scanner);
+            } catch (InputMismatchException nexc) {
+                Menu.skipLine();
+                System.out.print("Opção Inválida.");
+                opcao = 1;
+                Menu.clearBuffer(scanner);
+            }
         }
     }
 
@@ -138,30 +154,27 @@ public class Lista implements CAutenticacao{
             }
 
             // Tabela apresentando os dados do array
-            System.out.println("Conteúdo do array: ");
-            System.out.println("");
-            
-            for (int i = 0; i < 37 + sizeNomeSessao; i++) {
+            for (int i = 0; i < 63 + sizeNomeSessao; i++) {
                 System.out.printf("_");
             }
             System.out.println("");
             
-            System.out.printf(" ID |");
-            System.out.printf(" %"+ sizeNomeSessao +"s |", "Nome da Sessão");
-            System.out.println(" Data e Hora");
+            System.out.printf(" ID |  Tipo de Sala | Ingres. | %" + sizeNomeSessao + "s | Data e Hora \n", "Nome da Sessão");
             
             //Registros da tabela
             for (int i = 0; i < this.lista.size(); i++) {
                 System.out.printf("%3d | ", this.lista.get( i).getId());
-                System.out.printf("%" + sizeNomeSessao + "s", this.lista.get(i).getNomeSessao());
-                System.out.println(" | " + this.lista.get(i).getDataHora());
+                System.out.printf("%13s | ", this.lista.get( i).getTipoDeSessao().retNomeSala());
+                System.out.printf("%7.2f | ", this.lista.get( i).getTipoDeSessao().calcularPrecoDoIngresso());
+                System.out.printf("%" + sizeNomeSessao + "s | ", this.lista.get(i).getNomeSessao());
+                System.out.println(this.lista.get(i).getDataHora());
             }
         }
         
         System.out.println("");
         System.out.println("1. Retornar");
         Scanner scanner = new Scanner(System.in);
-        scanner.nextInt();
+        scanner.nextLine();
     }
 
     public void excluir() {
@@ -195,7 +208,16 @@ public class Lista implements CAutenticacao{
             System.out.println("");
             System.out.println("1. Retornar.");
             System.out.println("2. Excluir outro registro.");
-            option = scanner.nextInt();
+            
+            try {
+                option = scanner.nextInt();
+                Menu.clearBuffer(scanner);
+            } catch (InputMismatchException nexc) {
+                Menu.skipLine();
+                System.out.print("Opção Inválida.");
+                option = 1;
+                Menu.clearBuffer(scanner);
+            }
         }
     }
     
@@ -210,38 +232,45 @@ public class Lista implements CAutenticacao{
             return true;
         } else {
             String senha = "lista123";
-            String verificarSenha = "eu estou, claramente, errada.";
-            Integer tentativasFalhas = -1;
-
-            while (!verificarSenha.contains(senha)) {            
-                tentativasFalhas++;
+            String verificadorSenha = "senha claramente errada";
+            Integer tentativas = 0;
+            
+            while (!verificadorSenha.contains(senha)) {
+                tentativas++; 
                 Scanner scanner = new Scanner(System.in);
-                if (tentativasFalhas == 1)
-                    System.out.println("\nSenha incorreta. Tente novamente.\n");
-
-                System.out.println("INTERFACE DE ACESSO A LISTA.\n");
-                System.out.println("Insira a senha da lista:");
-                verificarSenha = scanner.nextLine();
-                if (tentativasFalhas > 1) {
-                    System.out.println("Você errou a senha " + tentativasFalhas
-                            + " vezes seguidas.");
-                    System.out.println("Deseja continuar? 1 Sim; 2 Não.");
+                
+                if (tentativas > 1)
+                {
+                    System.out.println("\nSenha incorreta.");
+                    Menu.skipLine();
+                }
+                
+                if (tentativas > 4) {
+                    System.out.println("\nTentativas excederam o limite máximo.");
+                    System.out.println("Retornando ao menu principal.");
+                    return false;
+                }else if (tentativas > 3) {
+                    System.out.println("Você errou a senha " + (tentativas - 1) + " vezes seguidas.");
+                    System.out.println("Deseja continuar?\n");
+                    System.out.println("1. Sim");
+                    System.out.println("2. Não");
                     Integer sair = scanner.nextInt();
+                    Menu.clearBuffer(scanner);
+                    Menu.skipLine();
+                    
                     if (sair == 2) {
-                        System.out.println("""
-                                           Você não tem acesso a lista :-/ 
-                                           Retornando ao menu principal! \n
-                                           """);
+                        System.out.println("\nRetornando ao menu principal.");
                         return false;
                     }
-                    /* Essa leitura de scanner abaixo serve para consumir a quebra
-                     * de linha restante ao usar o scanner.nextInt();
-                    */
-                    scanner.nextLine();
                 }
+
+                System.out.println("Acesso aos dados de lista. \n");
+                System.out.println("Auntenticação do usuário: \n");
+                System.out.printf("Senha: ");
+                verificadorSenha = scanner.nextLine();
             }
-            System.out.println("A senha está correta, saudações! :)");
-            System.out.print("\n-------------------------\n");
+            System.out.printf("\nSaudações! :)");
+            Menu.skipLine();
             isVerificado = true;
             return true;
         }

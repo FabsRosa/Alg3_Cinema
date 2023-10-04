@@ -54,11 +54,19 @@ public class SalaAnos80 extends Sala {
 
     @Override
     public void exibirDetalhesSala() {
-        System.out.println("É uma experiência que celebra a nostalgia, a diversão e a magia da década que continua a cativar os corações de pessoas de todas as idades\n" +
-"\n" +
-"No centro da sala, encontra-se um tesouro da cultura pop: o DeLorean DMC-12, o carro icônico do filme \"De Volta para o Futuro\"."
-                + " Dizem as lendas que este carro tem o poder de realizar viagens no tempo, "
-                + "um tributo perfeito à década que inspirou a imaginação de tantos. ");
-        
-        }
+        System.out.println("""
+                           \u00c9 uma experi\u00eancia que celebra a nostalgia, a divers\u00e3o e a magia da d\u00e9cada  que 
+                           continua a cativar os cora\u00e7\u00f5es de pessoas de todas as idadesNo centro da sala, 
+                           encontra-se  um tesouro da cultura pop: o DeLorean DMC-12, o carro ic\u00f4nico  do 
+                           filme  'De Volta para o Futuro'. Dizem as lendas que este carro tem o poder de 
+                           realizar  viagens  no  tempo,  um tributo perfeito \u00e0  d\u00e9cada  que  inspirou  a 
+                           imagina\u00e7\u00e3o de tantos. 
+                           """);
+        apresentarValorIngresso();
+    }
+    
+    @Override
+    public String retNomeSala() {
+        return "Sala Anos 80";
+    } 
 }

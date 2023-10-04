@@ -71,8 +71,11 @@ public class Arquivo implements CAutenticacao {
         }
         System.out.println("Salvar dados\n");
             
-            System.out.println("Lista de objetos foi salva no arquivo chamado \""
-                    + nomeArquivo + "\" com sucesso!\n");
+        System.out.println("Dados salvos com sucesso!");
+        System.out.println("Arquivo: '" + nomeArquivo + "'");
+        
+        lista.clear();
+        Sessao.setProximoId(1);
     }    
 
     /**
@@ -114,28 +117,31 @@ public class Arquivo implements CAutenticacao {
             }
 
             // Tabela apresentando os dados do arquivo
-            System.out.println("Conteúdo do arquivo: ");
-            System.out.println("");
-            
-            for (int i = 0; i < 32 + sizeNomeSessao; i++) {
+            for (int i = 0; i < 58 + sizeNomeSessao; i++) {
                 System.out.printf("_");
             }
             System.out.println("");
             
-            System.out.printf("%"+ sizeNomeSessao +"s |", "Nome da Sessão");
-            System.out.println(" Data e Hora");
+            System.out.printf("  Tipo de Sala | Ingres. | %" + sizeNomeSessao + "s | Data e Hora \n", "Nome da Sessão");
             
-            //Registros da tabela
-            for (int i = 0; i < listaSessoes.size(); i++) {
-                System.out.printf("%" + sizeNomeSessao + "s", listaSessoes.get(i).getNomeSessao());
-                System.out.println(" | " + listaSessoes.get(i).getDataHora());
+            try {
+                // Registros da tabela
+                for (int i = 0; i < listaSessoes.size(); i++) {
+                    System.out.printf(" %13s | ", listaSessoes.get( i).getTipoDeSessao().retNomeSala());
+                    System.out.printf("%7.2f | ", listaSessoes.get( i).getTipoDeSessao().calcularPrecoDoIngresso());
+                    System.out.printf("%" + sizeNomeSessao + "s", listaSessoes.get(i).getNomeSessao());
+                    System.out.println(" | " + listaSessoes.get(i).getDataHora());
+                }
+            } catch(NullPointerException nexc) {
+                System.out.println("\nArquivo não encontrado.");
+                return;
             }
         }
         
         System.out.println("");
         System.out.println("1. Retornar");
         Scanner scanner = new Scanner(System.in);
-        scanner.nextInt();
+        scanner.nextLine();
     }
 /*
 
@@ -166,36 +172,44 @@ public class Arquivo implements CAutenticacao {
         } else {
             String senha = "123mudar";
             String verificadorSenha = "senha claramente errada";
-            Integer tentativasFalhas = -1;
+            Integer tentativas = 0;
+            
             while (!verificadorSenha.contains(senha)) {
-                tentativasFalhas++; 
+                tentativas++; 
                 Scanner scanner = new Scanner(System.in);
-                if (tentativasFalhas == 1)
-                    System.out.println("\nSenha incorreta. Tente novamente.\n");
-
-                System.out.println("INTERFACE DE ACESSO AO ARQUIVO.\n");
-                System.out.println("Insira a senha para ter acesso ao arquivo:");
-                verificadorSenha = scanner.nextLine();
-                if (tentativasFalhas > 1) {
-                    System.out.println("Você errou a senha " + tentativasFalhas
-                            + " vezes seguidas.");
-                    System.out.println("Deseja continuar? 1 Sim; 2 Não.");
+                
+                if (tentativas > 1)
+                {
+                    System.out.println("\nSenha incorreta.");
+                    Menu.skipLine();
+                }
+                
+                if (tentativas > 4) {
+                    System.out.println("\nTentativas excederam o limite máximo.");
+                    System.out.println("Retornando ao menu principal.");
+                    return false;
+                }else if (tentativas > 3) {
+                    System.out.println("Você errou a senha " + (tentativas - 1) + " vezes seguidas.");
+                    System.out.println("Deseja continuar?\n");
+                    System.out.println("1. Sim");
+                    System.out.println("2. Não");
                     Integer sair = scanner.nextInt();
+                    Menu.clearBuffer(scanner);
+                    Menu.skipLine();
+                    
                     if (sair == 2) {
-                        System.out.println("""
-
-                                            Você não tem acesso ao arquivo :-/ 
-                                            Retornando ao menu principal.""");
+                        System.out.println("\nRetornando ao menu principal.");
                         return false;
                     }
-                    /* Essa leitura de scanner abaixo serve para consumir a quebra
-                     * de linha restante que o scanner.nextInt() deixa para trás;
-                    */
-                    scanner.nextLine();
                 }
+
+                System.out.println("Acesso aos dados de arquivo. \n");
+                System.out.println("Auntenticação do usuário: \n");
+                System.out.printf("Senha: ");
+                verificadorSenha = scanner.nextLine();
             }
-            System.out.println("A senha está correta, saudações! :)");
-            System.out.print("\n-------------------------\n");
+            System.out.printf("\nSaudações! :)");
+            Menu.skipLine();
             isVerificado = true;
             return true;
         }
