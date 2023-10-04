@@ -144,25 +144,21 @@ public class Arquivo implements CAutenticacao {
         scanner.nextLine();
     }
 /*
-
-ublic class ExcluirArquivo {
-    public static void main(String[] args) {
-
-        File arquivoParaExcluir = new File(caminhoDoArquivo);
-
-        if (arquivoParaExcluir.exists()) {
-
-            if (arquivoParaExcluir.delete()) {
-                System.out.println("Arquivo excluído com sucesso!");
-            } else {
-                System.out.println("Não foi possível excluir o arquivo.");
-            }
-        } else {
-            System.out.println("O arquivo não existe.");
-        }
-    }
-}
+limpar arq
 */
+    public void deletarArquivo(String nomeArquivo){
+        File arquivo = new File(nomeArquivo);
+        if(arquivo.exists()){
+            if(arquivo.delete()){
+                System.out.println("Arquivo deletado com sucesso!");
+            }else{
+                System.out.println("Arquivo deletado com sucesso!");
+            }
+        }else{
+            System.out.println("Arquivo não encontrado!");
+        }
+        
+    }
 
 
     /**
@@ -218,5 +214,9 @@ ublic class ExcluirArquivo {
             isVerificado = true;
             return true;
         }
+    }
+
+    void limpar() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
