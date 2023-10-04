@@ -15,7 +15,8 @@ public class SalaNeurodivergente extends Sala {
         this.iluminacaoSuave = iluminacaoSuave;
         this.areaDeSensoryFriendly = areaDeSensoryFriendly;
     }
-        public SalaNeurodivergente() {
+    
+    public SalaNeurodivergente() {
         
     }
 
