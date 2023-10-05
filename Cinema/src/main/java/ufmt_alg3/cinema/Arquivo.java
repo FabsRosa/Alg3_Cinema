@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InvalidClassException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -40,20 +41,19 @@ public class Arquivo implements CAutenticacao {
      * 
      * @author Gabriel  
      * @param lista armazena uma lista de cadastros de sessões.
-     * @param nomeArquivo é o nome do arquivo onde os dados serão guardados.
      * @throws java.io.IOException
      * @throws java.lang.ClassNotFoundException
      */
 
-    public void salvar(ArrayList<Sessao> lista, String nomeArquivo)
+    public void salvar(ArrayList<Sessao> lista)
             throws IOException, ClassNotFoundException {
         // Coleção para armazenar os dados do arquivo.
         ArrayList<Sessao> dadosAtuais = new ArrayList<>();
         
         // Verificando se o arquivo já existe no diretório padrão.
-        File arquivo = new File(nomeArquivo);
+        File arquivo = new File(nomeDoArquivo);
         if (arquivo.exists()) {
-            FileInputStream fileIn = new FileInputStream(nomeArquivo);
+            FileInputStream fileIn = new FileInputStream(nomeDoArquivo);
             try (ObjectInputStream objIn = new ObjectInputStream(fileIn)){
                 dadosAtuais = (ArrayList<Sessao>) objIn.readObject();
             }
@@ -63,7 +63,7 @@ public class Arquivo implements CAutenticacao {
         // Unindo os dados do arquivo e os novos.
         dadosAtuais.addAll(lista);
         
-        FileOutputStream fileOut = new FileOutputStream(nomeArquivo);
+        FileOutputStream fileOut = new FileOutputStream(nomeDoArquivo);
         try (ObjectOutputStream objOut = new ObjectOutputStream(fileOut)) {
             objOut.writeObject(dadosAtuais);
             fileOut.close();
@@ -72,7 +72,7 @@ public class Arquivo implements CAutenticacao {
         System.out.println("Salvar dados\n");
             
         System.out.println("Dados salvos com sucesso!");
-        System.out.println("Arquivo: '" + nomeArquivo + "'");
+        System.out.print("Arquivo: '" + nomeDoArquivo + "'");
         
         lista.clear();
         Sessao.setProximoId(1);
@@ -84,28 +84,33 @@ public class Arquivo implements CAutenticacao {
      * dentro dos arquivos, o método usa a lista de cópia para ler os dados e
      * imprimí-los no console.
      * 
-     * @param nomeArquivo
      * @throws java.io.FileNotFoundException
      * @throws java.lang.ClassNotFoundException
      * @throws java.io.IOException
      * @throws java.lang.NullPointerException
     */
     
-    public void listar(String nomeArquivo) throws FileNotFoundException, IOException, ClassNotFoundException, NullPointerException {
+    public void listar() throws FileNotFoundException, IOException, ClassNotFoundException, NullPointerException {
         ArrayList<Sessao> listaSessoes;
         FileInputStream fileIn;
         int sizeNomeSessao = 14; // Determina o tamanho da coluna "Nome da Sessão"
 
         System.out.println("Listar arquivo físico\n");
         try {
-            fileIn = new FileInputStream(nomeArquivo);
+            fileIn = new FileInputStream(nomeDoArquivo);
         } catch (FileNotFoundException nexc) {
             System.out.println("Arquivo não encontrado!");
             return;
         }
         
         ObjectInputStream objIn = new ObjectInputStream(fileIn);
-        listaSessoes = (ArrayList<Sessao>) objIn.readObject();
+        try {
+            listaSessoes = (ArrayList<Sessao>) objIn.readObject();
+        } catch (InvalidClassException nexc) {
+            System.out.println("Erro na leitura do arquivo.");
+            System.out.print("Arquivo incompatível com a versão atual.");
+            return;
+        }
         
         if (listaSessoes.isEmpty()) {
             System.out.println("Arquivo vazio.");
@@ -134,6 +139,7 @@ public class Arquivo implements CAutenticacao {
                 }
             } catch(NullPointerException nexc) {
                 System.out.println("\nArquivo não encontrado.");
+                fileIn.close();
                 return;
             }
         }
@@ -142,23 +148,23 @@ public class Arquivo implements CAutenticacao {
         System.out.println("1. Retornar");
         Scanner scanner = new Scanner(System.in);
         scanner.nextLine();
+        fileIn.close();
     }
-/*
+    
+    public void limpar() throws FileNotFoundException, IOException {
+        ArrayList<Sessao> lista = new ArrayList<>();
 
-         if (arquivo.exists()) {
-            boolean sucesso = arquivo.delete();
-        if (sucesso) {
-                System.out.println("Arquivo foi limpo com sucesso!");
-            } else {
-                System.out.println("Não foi possível limpar o arquivo, tente novamente :) ");
-            }
-        } else {
-            System.out.println("Ahh, o arquivo não existe :( ");
-            }
+        FileOutputStream fileOut = new FileOutputStream(nomeDoArquivo);
+        try (ObjectOutputStream objOut = new ObjectOutputStream(fileOut)) {
+            objOut.writeObject(lista);
+            fileOut.close();
+            objOut.close();
         }
+        System.out.println("Limpar arquivo físico\n");
+            
+        System.out.println("Dados excluídos com sucesso!");
+        System.out.print("Arquivo: '" + nomeDoArquivo + "'");
     }
-*/
-
 
     /**
      * Esse método solicita ao usuário uma senha para poder acessar as funções 

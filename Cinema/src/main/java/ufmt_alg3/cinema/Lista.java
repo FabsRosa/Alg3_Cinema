@@ -29,12 +29,11 @@ public class Lista implements CAutenticacao{
      * to de uma sessão na em uma sala do cinema. Ele armazena os registros
      * em um {@code ArrayList}.
      * 
-     * @param nomeArquivo
      * @throws java.text.ParseException
      * @throws java.io.IOException
      * @throws java.lang.ClassNotFoundException
      */
-    public void cadastrar(String nomeArquivo) throws ParseException, IOException, ClassNotFoundException {
+    public void cadastrar() throws ParseException, IOException, ClassNotFoundException {
         int opcao = 2;
         int escolhaSala;
         int salaConfirmada = 0;

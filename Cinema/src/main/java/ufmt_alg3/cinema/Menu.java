@@ -46,7 +46,7 @@ public class Menu {
             switch (opt) {
                 case 1 -> {
                     if (lista.autenticar()) {
-                        lista.cadastrar(arquivo.getNomeDoArquivo());
+                        lista.cadastrar();
                     } else {
                         break;
                     }
@@ -60,7 +60,7 @@ public class Menu {
                 }
                 case 3 -> {
                     if (arquivo.autenticar()){
-                        arquivo.listar(arquivo.getNomeDoArquivo());
+                        arquivo.listar();
                     } else {
                         break;
                     }
@@ -68,8 +68,7 @@ public class Menu {
                 }
                 case 4 -> {
                     if (arquivo.autenticar()) {
-                        arquivo.salvar(lista.getLista(),
-                            arquivo.getNomeDoArquivo());
+                        arquivo.salvar(lista.getLista());
                     } else {
                         break;
                     }
