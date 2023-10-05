@@ -1,9 +1,18 @@
-package ufmt_alg3.cinema;
+package ufmt_alg3.cinema.dados;
+import ufmt_alg3.cinema.autenticacao.CAutenticacao;
+import ufmt_alg3.cinema.sala.SalaTerror;
+import ufmt_alg3.cinema.sala.SalaAnime;
+import ufmt_alg3.cinema.sala.SalaNeurodivergente;
+import ufmt_alg3.cinema.sala.SalaMedieval;
+import ufmt_alg3.cinema.sala.SalaVip;
+import ufmt_alg3.cinema.sala.Sala;
+import ufmt_alg3.cinema.sala.SalaAnos80;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import ufmt_alg3.cinema.navegacao.Menu;
 
 /**
  * @author Virgínia Aguiar
@@ -15,6 +24,7 @@ public class Lista implements CAutenticacao{
     
     private ArrayList<Sessao> lista = new ArrayList();
     private static boolean isVerificado = false;
+    private String senha = "lista123";
 
     public ArrayList<Sessao> getLista() {
         return this.lista;
@@ -22,6 +32,22 @@ public class Lista implements CAutenticacao{
     
     public void setLista(ArrayList<Sessao> lista) {
         this.lista = lista;
+    }
+
+    public static boolean isIsVerificado() {
+        return isVerificado;
+    }
+
+    public static void setIsVerificado(boolean isVerificado) {
+        Lista.isVerificado = isVerificado;
+    }
+
+    protected String getSenha() {
+        return senha;
+    }
+
+    protected void setSenha(String senha) {
+        this.senha = senha;
     }
     
     /**
@@ -230,7 +256,7 @@ public class Lista implements CAutenticacao{
         if (isVerificado) {
             return true;
         } else {
-            String senha = "lista123";
+            String senha = getSenha();
             String verificadorSenha = "senha claramente errada";
             Integer tentativas = 0;
             

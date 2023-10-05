@@ -1,4 +1,4 @@
-package ufmt_alg3.cinema;
+package ufmt_alg3.cinema.sala;
 
 import java.io.Serializable;
 import java.util.Scanner;

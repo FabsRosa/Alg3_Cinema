@@ -1,4 +1,6 @@
-package ufmt_alg3.cinema;
+package ufmt_alg3.cinema.navegacao;
+import ufmt_alg3.cinema.dados.Arquivo;
+import ufmt_alg3.cinema.dados.Lista;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;

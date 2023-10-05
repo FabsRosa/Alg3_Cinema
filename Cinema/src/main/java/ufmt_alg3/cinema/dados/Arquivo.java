@@ -1,5 +1,6 @@
-package ufmt_alg3.cinema;
+package ufmt_alg3.cinema.dados;
 
+import ufmt_alg3.cinema.autenticacao.CAutenticacao;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -10,6 +11,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
+import ufmt_alg3.cinema.navegacao.Menu;
 
 /*
  * @author Virgínia Aguiar
@@ -26,11 +28,32 @@ import java.util.Scanner;
 
 public class Arquivo implements CAutenticacao {
     
-    private final String nomeDoArquivo = "arquivo_registros.dat";
+    private String nomeDoArquivo = "arquivo_registros.dat";
     private static boolean isVerificado = false;
+    private String senha = "123mudar";
+
+    public static boolean isIsVerificado() {
+        return isVerificado;
+    }
+
+    public static void setIsVerificado(boolean isVerificado) {
+        Arquivo.isVerificado = isVerificado;
+    }
+
+    protected String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
     
     public String getNomeDoArquivo() {
         return nomeDoArquivo;
+    }
+
+    public void setNomeDoArquivo(String nomeDoArquivo) {
+        this.nomeDoArquivo = nomeDoArquivo;
     }
     
     /**
@@ -176,7 +199,7 @@ public class Arquivo implements CAutenticacao {
         if (isVerificado) {
             return true;
         } else {
-            String senha = "123mudar";
+            String senha = getSenha();
             String verificadorSenha = "senha claramente errada";
             Integer tentativas = 0;
             

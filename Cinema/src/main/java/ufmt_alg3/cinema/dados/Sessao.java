@@ -1,5 +1,6 @@
-package ufmt_alg3.cinema;
+package ufmt_alg3.cinema.dados;
 
+import ufmt_alg3.cinema.sala.Sala;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.Date;

@@ -1,5 +1,6 @@
 package ufmt_alg3.cinema;
 
+import ufmt_alg3.cinema.navegacao.Menu;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
@@ -15,6 +16,5 @@ public class Cinema {
             FileNotFoundException, ClassNotFoundException {
         Menu menu = new Menu();
         menu.apresentarMenu();
-        // Teste de vinculação de usuário ao commit.
     }
 }
